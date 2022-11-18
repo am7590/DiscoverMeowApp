@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "Meowchickenfish_sticker (2).png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Meowchickenfish_sticker (2) 1.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Meowchickenfish_sticker (2) 2.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
