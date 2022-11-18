@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SwiftUI
 import SCSDKLoginKit
 
 @UIApplicationMain class AppDelegate: UIResponder, UIApplicationDelegate {
