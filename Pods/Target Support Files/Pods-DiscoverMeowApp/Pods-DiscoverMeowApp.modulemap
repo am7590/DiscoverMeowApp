@@ -1,0 +1,6 @@
+framework module Pods_DiscoverMeowApp {
+  umbrella header "Pods-DiscoverMeowApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
