@@ -10,7 +10,7 @@
         <!--Login Kit-->
         <scene sceneID="0FU-3f-8Z8">
             <objects>
-                <viewController id="prP-ca-6ss" customClass="LoginViewController" customModule="DiscoverMeowApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="prP-ca-6ss" customClass="InitialViewController" customModule="DiscoverMeowApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vw6-MB-y0J">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

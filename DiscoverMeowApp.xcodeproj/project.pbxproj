@@ -15,12 +15,18 @@
 		291A53C529271B69009FFD7D /* OnboardingArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291A53BF29271B69009FFD7D /* OnboardingArrowView.swift */; };
 		291A53C629271B69009FFD7D /* MainOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291A53C029271B69009FFD7D /* MainOnboardingView.swift */; };
 		291A53CA2927202D009FFD7D /* BitmojiDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291A53C92927202D009FFD7D /* BitmojiDataFetcher.swift */; };
+		296C077A29284FFA00B5FFD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 296C077929284FFA00B5FFD8 /* GoogleService-Info.plist */; };
+		296C077D292852A700B5FFD8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 296C077C292852A700B5FFD8 /* FirebaseAnalytics */; };
+		296C077F292852A700B5FFD8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 296C077E292852A700B5FFD8 /* FirebaseAuth */; };
+		296C0781292852A700B5FFD8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 296C0780292852A700B5FFD8 /* FirebaseCrashlytics */; };
+		296C0783292852A700B5FFD8 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 296C0782292852A700B5FFD8 /* FirebaseDatabase */; };
+		296C0785292852A700B5FFD8 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 296C0784292852A700B5FFD8 /* FirebaseFirestore */; };
 		5F41F3302A9EF52BFFE6339D /* Pods_DiscoverMeowApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB485422CFC9D71A7BEA72C3 /* Pods_DiscoverMeowApp.framework */; };
 		CAC21F0521E4FC6E00A9BC35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC21F0421E4FC6E00A9BC35 /* AppDelegate.swift */; };
 		CAC21F0A21E4FC6E00A9BC35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC21F0821E4FC6E00A9BC35 /* Main.storyboard */; };
 		CAC21F0C21E4FC7200A9BC35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAC21F0B21E4FC7200A9BC35 /* Assets.xcassets */; };
 		CAC21F0F21E4FC7200A9BC35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC21F0D21E4FC7200A9BC35 /* LaunchScreen.storyboard */; };
-		CAC21F3421E64C3000A9BC35 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC21F3321E64C3000A9BC35 /* LoginViewController.swift */; };
+		CAC21F3421E64C3000A9BC35 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC21F3321E64C3000A9BC35 /* InitialViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +38,7 @@
 		291A53BF29271B69009FFD7D /* OnboardingArrowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingArrowView.swift; sourceTree = "<group>"; };
 		291A53C029271B69009FFD7D /* MainOnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainOnboardingView.swift; sourceTree = "<group>"; };
 		291A53C92927202D009FFD7D /* BitmojiDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitmojiDataFetcher.swift; sourceTree = "<group>"; };
+		296C077929284FFA00B5FFD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		49F7DD3CD9D1960B2FFC168D /* Pods-LoginKitSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginKitSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoginKitSample/Pods-LoginKitSample.debug.xcconfig"; sourceTree = "<group>"; };
 		65B664A9D735E4A62DA2BBD3 /* Pods-DiscoverMeowApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscoverMeowApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DiscoverMeowApp/Pods-DiscoverMeowApp.debug.xcconfig"; sourceTree = "<group>"; };
 		AB485422CFC9D71A7BEA72C3 /* Pods_DiscoverMeowApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DiscoverMeowApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,7 +48,7 @@
 		CAC21F0B21E4FC7200A9BC35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAC21F0E21E4FC7200A9BC35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAC21F1021E4FC7200A9BC35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CAC21F3321E64C3000A9BC35 /* LoginViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
+		CAC21F3321E64C3000A9BC35 /* InitialViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		EDACDB5B445E212F553598F2 /* Pods-DiscoverMeowApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscoverMeowApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-DiscoverMeowApp/Pods-DiscoverMeowApp.release.xcconfig"; sourceTree = "<group>"; };
 		F2EF7F8B80FEE631889E87A9 /* Pods-LoginKitSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginKitSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoginKitSample/Pods-LoginKitSample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -51,7 +58,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				296C0783292852A700B5FFD8 /* FirebaseDatabase in Frameworks */,
+				296C077D292852A700B5FFD8 /* FirebaseAnalytics in Frameworks */,
+				296C0781292852A700B5FFD8 /* FirebaseCrashlytics in Frameworks */,
+				296C077F292852A700B5FFD8 /* FirebaseAuth in Frameworks */,
 				5F41F3302A9EF52BFFE6339D /* Pods_DiscoverMeowApp.framework in Frameworks */,
+				296C0785292852A700B5FFD8 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,14 +134,15 @@
 			isa = PBXGroup;
 			children = (
 				CAC21F0421E4FC6E00A9BC35 /* AppDelegate.swift */,
+				CAC21F3321E64C3000A9BC35 /* InitialViewController.swift */,
 				291A53C92927202D009FFD7D /* BitmojiDataFetcher.swift */,
 				291A53B829271A78009FFD7D /* Onboarding */,
 				291A53B929271A81009FFD7D /* Discover Views */,
-				CAC21F3321E64C3000A9BC35 /* LoginViewController.swift */,
 				CAC21F0821E4FC6E00A9BC35 /* Main.storyboard */,
 				CAC21F0B21E4FC7200A9BC35 /* Assets.xcassets */,
 				CAC21F0D21E4FC7200A9BC35 /* LaunchScreen.storyboard */,
 				CAC21F1021E4FC7200A9BC35 /* Info.plist */,
+				296C077929284FFA00B5FFD8 /* GoogleService-Info.plist */,
 			);
 			path = LoginKitSample;
 			sourceTree = "<group>";
@@ -152,6 +165,13 @@
 			dependencies = (
 			);
 			name = DiscoverMeowApp;
+			packageProductDependencies = (
+				296C077C292852A700B5FFD8 /* FirebaseAnalytics */,
+				296C077E292852A700B5FFD8 /* FirebaseAuth */,
+				296C0780292852A700B5FFD8 /* FirebaseCrashlytics */,
+				296C0782292852A700B5FFD8 /* FirebaseDatabase */,
+				296C0784292852A700B5FFD8 /* FirebaseFirestore */,
+			);
 			productName = LoginKitSample;
 			productReference = CAC21F0121E4FC6E00A9BC35 /* DiscoverMeowApp.app */;
 			productType = "com.apple.product-type.application";
@@ -180,6 +200,9 @@
 				Base,
 			);
 			mainGroup = CAC21EF821E4FC6E00A9BC35;
+			packageReferences = (
+				296C077B292852A700B5FFD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = CAC21F0221E4FC6E00A9BC35 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -197,6 +220,7 @@
 				CAC21F0F21E4FC7200A9BC35 /* LaunchScreen.storyboard in Resources */,
 				CAC21F0C21E4FC7200A9BC35 /* Assets.xcassets in Resources */,
 				CAC21F0A21E4FC6E00A9BC35 /* Main.storyboard in Resources */,
+				296C077A29284FFA00B5FFD8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,7 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAC21F3421E64C3000A9BC35 /* LoginViewController.swift in Sources */,
+				CAC21F3421E64C3000A9BC35 /* InitialViewController.swift in Sources */,
 				291A53C329271B69009FFD7D /* PageView.swift in Sources */,
 				CAC21F0521E4FC6E00A9BC35 /* AppDelegate.swift in Sources */,
 				291A53C429271B69009FFD7D /* DummyData.swift in Sources */,
@@ -466,6 +490,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		296C077B292852A700B5FFD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		296C077C292852A700B5FFD8 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 296C077B292852A700B5FFD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		296C077E292852A700B5FFD8 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 296C077B292852A700B5FFD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		296C0780292852A700B5FFD8 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 296C077B292852A700B5FFD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		296C0782292852A700B5FFD8 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 296C077B292852A700B5FFD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		296C0784292852A700B5FFD8 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 296C077B292852A700B5FFD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CAC21EF921E4FC6E00A9BC35 /* Project object */;
 }
