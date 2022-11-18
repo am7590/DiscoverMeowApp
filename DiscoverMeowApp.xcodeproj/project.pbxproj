@@ -84,22 +84,14 @@
 		CAC21F0321E4FC6E00A9BC35 /* LoginKitSample */ = {
 			isa = PBXGroup;
 			children = (
-				CAC21F3221E59CBD00A9BC35 /* Classes */,
+				CAC21F0421E4FC6E00A9BC35 /* AppDelegate.swift */,
+				CAC21F3321E64C3000A9BC35 /* LoginViewController.swift */,
 				CAC21F0821E4FC6E00A9BC35 /* Main.storyboard */,
 				CAC21F0B21E4FC7200A9BC35 /* Assets.xcassets */,
 				CAC21F0D21E4FC7200A9BC35 /* LaunchScreen.storyboard */,
 				CAC21F1021E4FC7200A9BC35 /* Info.plist */,
 			);
 			path = LoginKitSample;
-			sourceTree = "<group>";
-		};
-		CAC21F3221E59CBD00A9BC35 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				CAC21F0421E4FC6E00A9BC35 /* AppDelegate.swift */,
-				CAC21F3321E64C3000A9BC35 /* LoginViewController.swift */,
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
