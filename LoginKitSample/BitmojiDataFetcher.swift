@@ -21,13 +21,11 @@ final class BitmojiDataFetcher {
                 let displayName = userData?.displayName ?? ""
                 let avatar = userData?.bitmojiTwoDAvatarUrl ?? ""
                 
-                // Needs to be on the main thread to control the UI.
-                DispatchQueue.main.async {
+                DatabaseManager.shared.addUserInfo(data: ["displayName": displayName])
+                
                     //self.loadAndDisplayAvatar(url: URL(string: avatar))
                     print(displayName)
                     print(avatar)
-                    // self.nameLabel?.text = displayName
-                }
             },
             failure: { (error: Error?, isUserLoggedOut: Bool) in
                 if let error = error {
