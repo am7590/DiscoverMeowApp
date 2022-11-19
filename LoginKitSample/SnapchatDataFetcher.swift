@@ -1,5 +1,5 @@
 //
-//  BitmojiDataFetcher.swift
+//  SnapchatDataFetcher.swift
 //  DiscoverMeowApp
 //
 //  Created by Alek Michelson on 11/17/22.
@@ -9,11 +9,12 @@
 import Foundation
 import SCSDKLoginKit
 
-final class BitmojiDataFetcher {
+final class SnapchatDataFetcher {
     
-    static let shared = BitmojiDataFetcher()
+    static let shared = SnapchatDataFetcher()
     
-    func getBitmoji() {
+    public func fetchUserData() {
+        
         let builder = SCSDKUserDataQueryBuilder().withDisplayName().withBitmojiTwoDAvatarUrl()
         SCSDKLoginClient.fetchUserData(
             with: builder.build(),
@@ -21,16 +22,16 @@ final class BitmojiDataFetcher {
                 let displayName = userData?.displayName ?? ""
                 let avatar = userData?.bitmojiTwoDAvatarUrl ?? ""
                 
-                DatabaseManager.shared.addUserInfo(data: ["displayName": displayName])
+                DatabaseManager.shared.addUserInfo(data: ["bitmojiURL": avatar])
                 
-                    //self.loadAndDisplayAvatar(url: URL(string: avatar))
-                    print(displayName)
-                    print(avatar)
             },
             failure: { (error: Error?, isUserLoggedOut: Bool) in
                 if let error = error {
                     print(String.init(format: "Failed to fetch user data. Details: %@", error.localizedDescription))
                 }
+                
             })
+        
+        return bitmojiURL
     }
 }
