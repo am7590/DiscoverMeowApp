@@ -7,6 +7,7 @@
 //
 
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 final class DatabaseManager {
     
@@ -14,7 +15,23 @@ final class DatabaseManager {
     
     private var db = Firestore.firestore()
     
-    public func addUserInfo(data: [String: String]) {
-        db.collection("users").addDocument(data: data)
+    public func addUserInfo(user: User) {
+        do {
+            let newUserReference = try db.collection("users").addDocument(from: user)
+            print("Added \(user.displayName) to the database with reference \(newUserReference)")
+        } catch {
+            fatalError("Could not add user to database")
+        }
+    }
+    
+    public func checkIfUserTokenExists(token: String) -> Bool {
+        //do {
+            let existingUserReference = db.collection("users").document(token)
+            print("existingUserReference: \(existingUserReference)")
+            return existingUserReference == existingUserReference
+            
+       // } catch {
+            
+       // }
     }
 }

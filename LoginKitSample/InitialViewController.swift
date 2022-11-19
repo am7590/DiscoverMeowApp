@@ -22,7 +22,6 @@ class InitialViewController: UIViewController {
         
         if SCSDKLoginClient.isUserLoggedIn {
             moveToDiscoverView()
-            BitmojiDataFetcher.shared.getBitmoji()
         }
         
         messageLabel?.textColor = .black

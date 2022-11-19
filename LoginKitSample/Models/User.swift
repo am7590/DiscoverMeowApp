@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-struct User {
+struct User: Codable {
     let displayName: String
     let bitmojiURL: URL
+    @DocumentID var token: String?
 }
