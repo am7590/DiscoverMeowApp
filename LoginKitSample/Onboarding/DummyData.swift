@@ -12,6 +12,7 @@ public struct DummyData {
     static var onboardingViews: [Page] = [
         Page.welcome,
         Page.connectToSnap,
-        Page.verification
+        Page.verification,
+        Page.preferences
     ]
 }

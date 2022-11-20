@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum Page: Identifiable, Equatable {
-    case welcome, connectToSnap, verification
+    case welcome, connectToSnap, verification, preferences
     
     var id: UUID { UUID() }
     
@@ -17,9 +17,11 @@ enum Page: Identifiable, Equatable {
         case .welcome:
             return "Welcome to DiscoverMeow"
         case .connectToSnap:
-            return "Create a profile"
+            return "What is your age?"
         case .verification:
-            return "Verification"
+            return "Where are you from?"
+        case .preferences:
+            return "Select your interests"
         }
     }
     
@@ -28,9 +30,11 @@ enum Page: Identifiable, Equatable {
         case .welcome:
             return "Grow your snapchat following"
         case .connectToSnap:
-            return "connectToSnap description"
+            return ""
         case .verification:
-            return "verification description"
+            return "Enter your country"
+        case .preferences:
+            return "I will remake this view"
         }
     }
     
@@ -48,9 +52,11 @@ enum Page: Identifiable, Equatable {
         case .welcome:
             return AnyView(EmptyView())
         case .connectToSnap:
-            return AnyView(red)
+            return AnyView(SelectDateView())
         case .verification:
-            return AnyView(yellow)
+            return AnyView(SelectCountryView())
+        case .preferences:
+            return AnyView(PreferencesView())
         }
     }
     
@@ -62,6 +68,8 @@ enum Page: Identifiable, Equatable {
             return 1
         case .verification:
             return 2
+        case .preferences:
+            return 3
         }
     }
     
@@ -72,7 +80,17 @@ enum Page: Identifiable, Equatable {
         case .connectToSnap:
             return .both
         case .verification:
+            return .both
+        case .preferences:
             return .left
+        }
+    }
+    
+    var transitionToDiscoverView: Bool {
+        if case .preferences = self {
+            return true
+        } else {
+            return false
         }
     }
 }
@@ -80,35 +98,113 @@ enum Page: Identifiable, Equatable {
 
 // MARK: Dummy views
 
-@ViewBuilder
-public var red: some View {
-    ZStack {
-        Color.red
-        
-        VStack(spacing: 8) {
-            Text("Connect to snapchat")
-            Text("Verify bitmoji")
-            Text("Verify age??")
+struct SelectDateView: View {
+    @State private var birthDate = Date()
+    @State private var age: DateComponents = DateComponents()
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            
+            DatePicker("", selection: $birthDate, in: ...Date(), displayedComponents: .date).datePickerStyle(WheelDatePickerStyle()).font(.title)
+                .onChange(of: birthDate, perform: { value in
+                    age = Calendar.current.dateComponents([.year, .month, .day], from: birthDate, to: Date())
+                })
+            Text("Please confirm you are \(age.year ?? 0) years old")
+                .font(.title3)
+            
+            Spacer()
+        }
+        .background(Color("MeowOrange"))
+    }
+}
+
+
+struct SelectCountryView: View {
+    @State var countryId: String = ""
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            CountryPicker(countryId: $countryId)
+            Text("You picked \(countryId) \(flag(countryId))")
+            Spacer()
+        }
+        .background(Color("MeowOrange"))
+        .frame(width: UIScreen.main.bounds.width)
+    }
+   
+    func flag(_ country: String) -> String {
+        let base : UInt32 = 127397
+        var s = ""
+        for v in country.unicodeScalars {
+            s.unicodeScalars.append(UnicodeScalar(base + v.value)!)
+        }
+        return String(s)
+    }
+}
+
+struct CountryPicker: View {
+    @Binding var countryId: String
+    @Environment(\.locale) var locale
+    
+    var body: some View {
+        Picker("", selection: $countryId) {
+            ForEach(Locale.isoRegionCodes, id: \.self) { iso in
+                Text(locale.localizedString(forRegionCode: iso)!)
+                    .tag(iso)
+            }
         }
     }
 }
 
-@ViewBuilder
-public var green: some View {
-    ZStack {
-        Color.green
-    }
-}
-
-@ViewBuilder
-public var yellow: some View {
-    ZStack {
-        Color.yellow
-        
-        VStack(spacing: 8) {
-            Text("Make profile")
-            Text("Edit name?")
-            Text("Select interests")
+struct PreferencesView: View {
+    
+    @State private var isActive = false
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            
+//            FlexibleView(
+//                availableWidth: UIScreen.main.bounds.width-16,
+//                data: ["⚽️", "🎣", "🎤", "🏕", "👨‍🍳", "⚽️", "🎣", "🎤", "🏕", "👨‍🍳", "⚽️", "🎣", "🎤", "🏕", "👨‍🍳", "..."],
+//                spacing: 12,
+//                alignment: .leading
+//            ) { item in
+//                
+//                Text(verbatim: item)
+//                    .padding(12)
+//                    .background(
+//                        RoundedRectangle(cornerRadius: 8)
+//                            .fill(Color("LightYellow"))
+//                            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+//                            .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
+//                    )
+//            }
+//            .frame(width: UIScreen.main.bounds.width, height: 40)
+//            .padding(.vertical)
+            
+            
+            Group {
+                Group {
+                    Text("Done")
+                        .bold()
+                }
+                .font(.title3)
+                .frame(width: 250)
+                .background(.red)
+                .clipShape(Capsule())
+            }
+            .onTapGesture {
+                isActive = true
+            }
+            padding(.top, 50)
+            
+            NavigationLink(destination: DiscoverView(), isActive: $isActive) { }
+                .isDetailLink(false)
+            
         }
+        .frame(width: UIScreen.main.bounds.width)
     }
 }

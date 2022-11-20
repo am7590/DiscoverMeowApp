@@ -11,29 +11,31 @@ struct MainOnboardingView: View {
     @ObservedObject var viewModel: OnboardingViewModel
     
     var body: some View {
-        TabView(selection: $viewModel.pageIndex) {
-            ForEach(viewModel.pages) { page in
-                VStack {
-                    Spacer()
-                    PageView(page: page)
-                    Spacer()
-                    OnboardingArrowView(viewModel: viewModel, arrow: page.arrowConfig)
-                        .onTapGesture {
-                            viewModel.incrementPage()
-                        }
-                    Spacer()
+        NavigationView {
+            TabView(selection: $viewModel.pageIndex) {
+                ForEach(viewModel.pages) { page in
+                    VStack {
+                        Spacer()
+                        PageView(page: page)
+                        Spacer()
+                        OnboardingArrowView(viewModel: viewModel, arrow: page.arrowConfig)
+                            .onTapGesture {
+                                viewModel.incrementPage()
+                            }
+                        Spacer()
+                    }
+                    .tag(page.tag)
                 }
-                .tag(page.tag)
             }
+            .animation(.default, value: viewModel.pageIndex)
+            .indexViewStyle(.page(backgroundDisplayMode: .interactive))
+            .tabViewStyle(PageTabViewStyle())
+            .onAppear {
+                viewModel.setupDotAppearance()
+            }
+            .background(Color("MeowOrange"))
         }
-        .animation(.default, value: viewModel.pageIndex)
-        .indexViewStyle(.page(backgroundDisplayMode: .interactive))
-        .tabViewStyle(PageTabViewStyle())
-        .onAppear {
-            viewModel.setupDotAppearance()
-        }
-        .background(Color("MeowOrange"))
-
+        .navigationViewStyle(StackNavigationViewStyle())
         
 //        .background(
 //            RadialGradient(gradient: Gradient(colors: [.orange, .white]), center: .center, startRadius: 0, endRadius: 400)
