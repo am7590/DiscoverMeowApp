@@ -9,8 +9,48 @@
 import SwiftUI
 
 struct DiscoverView: View {
+    
+    @StateObject private var viewModel = DiscoverViewModel()
+    
     var body: some View {
-        Text("Discover View")
+        
+        VStack {
+            ScrollView {
+                HStack {
+                    Button {
+                        // do something
+                    } label: {
+                        AsyncImage(
+                            url: viewModel.bitmojiURL,
+                            content: { image in
+                                image.resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(maxWidth: 45, maxHeight: 45)
+                                    .background(Circle().frame(width: 48, height: 48))
+                            },
+                            placeholder: {
+                                ProgressView()
+                            })
+                    }
+                    
+                    Spacer()
+
+                    Button {
+                        // do something
+                    } label: {
+                        Image(systemName: "bell")
+                            .font(.title.bold())
+                            .foregroundColor(.black)
+                    }
+                    
+                }
+                .padding(.horizontal)
+                
+                
+                Text("Discover View")
+
+            }
+        }
     }
 }
 
