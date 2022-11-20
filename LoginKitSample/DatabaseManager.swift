@@ -14,6 +14,11 @@ final class DatabaseManager {
     static let shared = DatabaseManager()
     
     private var db = Firestore.firestore()
+    var user: User?
+    
+//    public func checkIfUserTokenExists(token: String) -> DocumentReference {
+//        return db.collection("users").document(token)
+//    }
     
     public func addUserInfo(user: User) {
         do {
@@ -24,14 +29,32 @@ final class DatabaseManager {
         }
     }
     
-    public func checkIfUserTokenExists(token: String) -> Bool {
-        //do {
-            let existingUserReference = db.collection("users").document(token)
-            print("existingUserReference: \(existingUserReference)")
-            return existingUserReference == existingUserReference
-            
-       // } catch {
-            
-       // }
+    public func fetchUserInfo(userDocumentReference: DocumentReference) -> User? {
+        print(userDocumentReference.path)
+        
+        userDocumentReference.getDocument(as: User.self) { result in
+            switch result {
+            case .success(let user):
+                self.user = user
+            case .failure(let failure):
+                fatalError(failure.localizedDescription)
+            }
+        }
+        
+        return user
+    }
+    
+    public func doesTokenExist(token: String) {        
+        db.collection("users").whereField("token", isEqualTo: token).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                print("found \(querySnapshot!.documents.count) accounts with token \(token)")
+                let userDict = querySnapshot!.documents.first?.data()
+                let user = User(data: userDict!)
+                print(querySnapshot!.documents.first?.documentID)
+                self.user = user
+            }
+        }
     }
 }

@@ -10,7 +10,15 @@ import Foundation
 import FirebaseFirestoreSwift
 
 struct User: Codable {
+    @DocumentID var id: String?  /// do not write to this
     let displayName: String
     let bitmojiURL: URL
-    @DocumentID var token: String?
+    let token: String
+    
+    public init(data: [String: Any]) {
+        self.displayName = data["displayName"] as? String ?? ""
+        let bitmojiURL = data["bitmojiURL"] as? String ?? ""
+        self.bitmojiURL = URL(string: bitmojiURL)!
+        self.token = data["token"] as? String ?? ""
+    }
 }
