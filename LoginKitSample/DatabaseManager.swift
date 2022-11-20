@@ -44,17 +44,24 @@ final class DatabaseManager {
         return user
     }
     
-    public func doesTokenExist(token: String) {        
-        db.collection("users").whereField("token", isEqualTo: token).getDocuments() { (querySnapshot, err) in
+    public func doesUserExist(user: User) {
+        
+        db.collection("users").whereField("token", isEqualTo: user.token).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                print("found \(querySnapshot!.documents.count) accounts with token \(token)")
-                let userDict = querySnapshot!.documents.first?.data()
-                let user = User(data: userDict!)
-                print(querySnapshot!.documents.first?.documentID)
-                self.user = user
+                let count = querySnapshot!.documents.count
+                print("found \(count) accounts with token \(user)")
+                
+                if count == 0 {
+                    self.addUserInfo(user: user)
+                } else {
+                    let userDict = querySnapshot!.documents.first?.data()
+                    let user = User(data: userDict!)
+                    print(querySnapshot!.documents.first?.documentID)
+                    self.user = user
+                }
             }
-        }
+        }        
     }
 }

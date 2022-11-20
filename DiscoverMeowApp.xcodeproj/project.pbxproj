@@ -14,7 +14,6 @@
 		291A53C429271B69009FFD7D /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291A53BE29271B69009FFD7D /* DummyData.swift */; };
 		291A53C529271B69009FFD7D /* OnboardingArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291A53BF29271B69009FFD7D /* OnboardingArrowView.swift */; };
 		291A53C629271B69009FFD7D /* MainOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291A53C029271B69009FFD7D /* MainOnboardingView.swift */; };
-		291A53CA2927202D009FFD7D /* SnapchatDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291A53C92927202D009FFD7D /* SnapchatDataFetcher.swift */; };
 		296C077A29284FFA00B5FFD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 296C077929284FFA00B5FFD8 /* GoogleService-Info.plist */; };
 		296C077D292852A700B5FFD8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 296C077C292852A700B5FFD8 /* FirebaseAnalytics */; };
 		296C077F292852A700B5FFD8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 296C077E292852A700B5FFD8 /* FirebaseAuth */; };
@@ -41,7 +40,6 @@
 		291A53BE29271B69009FFD7D /* DummyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 		291A53BF29271B69009FFD7D /* OnboardingArrowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingArrowView.swift; sourceTree = "<group>"; };
 		291A53C029271B69009FFD7D /* MainOnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainOnboardingView.swift; sourceTree = "<group>"; };
-		291A53C92927202D009FFD7D /* SnapchatDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapchatDataFetcher.swift; sourceTree = "<group>"; };
 		296C077929284FFA00B5FFD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		296C07862928675000B5FFD8 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		296C078929286FCF00B5FFD8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -152,7 +150,6 @@
 			children = (
 				CAC21F0421E4FC6E00A9BC35 /* AppDelegate.swift */,
 				CAC21F3321E64C3000A9BC35 /* InitialViewController.swift */,
-				291A53C92927202D009FFD7D /* SnapchatDataFetcher.swift */,
 				296C07862928675000B5FFD8 /* DatabaseManager.swift */,
 				296C078829286FCA00B5FFD8 /* Models */,
 				291A53B829271A78009FFD7D /* Onboarding */,
@@ -304,7 +301,6 @@
 				296C078A29286FCF00B5FFD8 /* User.swift in Sources */,
 				291A53C129271B69009FFD7D /* OnboardingViewModel.swift in Sources */,
 				291A53C229271B69009FFD7D /* Page.swift in Sources */,
-				291A53CA2927202D009FFD7D /* SnapchatDataFetcher.swift in Sources */,
 				296C078E2928733100B5FFD8 /* DiscoverViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -21,4 +21,10 @@ struct User: Codable {
         self.bitmojiURL = URL(string: bitmojiURL)!
         self.token = data["token"] as? String ?? ""
     }
+    
+    public init(displayName: String, bitmojiURL: URL, token: String) {
+        self.displayName = displayName
+        self.bitmojiURL = bitmojiURL
+        self.token = token
+    }
 }
