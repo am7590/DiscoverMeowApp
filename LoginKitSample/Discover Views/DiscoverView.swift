@@ -12,6 +12,7 @@ struct DiscoverView: View {
     
     @StateObject private var viewModel = DiscoverViewModel()
     @State private var showProfileView = false
+    @State private var showNotificationView = false
     
     var body: some View {
         
@@ -19,7 +20,7 @@ struct DiscoverView: View {
             ScrollView {
                 HStack {
                     Button {
-                        self.showProfileView = true
+                        self.showProfileView.toggle()
                     } label: {
                         AsyncImage(
                             url: viewModel.bitmojiURL,
@@ -37,7 +38,7 @@ struct DiscoverView: View {
                     Spacer()
 
                     Button {
-                        // do something
+                        self.showNotificationView.toggle()
                     } label: {
                         Image(systemName: "bell")
                             .font(.title.bold())
@@ -56,7 +57,9 @@ struct DiscoverView: View {
         .sheet(isPresented: $showProfileView) {
             ProfileView()
         }
-        
+        .sheet(isPresented: $showNotificationView) {
+            NotificationView()
+        }
     }
 }
 
