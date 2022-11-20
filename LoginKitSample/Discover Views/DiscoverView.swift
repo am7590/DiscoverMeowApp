@@ -11,6 +11,7 @@ import SwiftUI
 struct DiscoverView: View {
     
     @StateObject private var viewModel = DiscoverViewModel()
+    @State private var showProfileView = false
     
     var body: some View {
         
@@ -18,7 +19,7 @@ struct DiscoverView: View {
             ScrollView {
                 HStack {
                     Button {
-                        // do something
+                        self.showProfileView = true
                     } label: {
                         AsyncImage(
                             url: viewModel.bitmojiURL,
@@ -43,6 +44,7 @@ struct DiscoverView: View {
                             .foregroundColor(.black)
                     }
                     
+                    
                 }
                 .padding(.horizontal)
                 
@@ -51,6 +53,10 @@ struct DiscoverView: View {
 
             }
         }
+        .sheet(isPresented: $showProfileView) {
+            ProfileView()
+        }
+        
     }
 }
 
