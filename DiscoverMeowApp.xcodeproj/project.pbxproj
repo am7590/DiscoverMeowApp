@@ -14,6 +14,8 @@
 		291A53C429271B69009FFD7D /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291A53BE29271B69009FFD7D /* DummyData.swift */; };
 		291A53C529271B69009FFD7D /* OnboardingArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291A53BF29271B69009FFD7D /* OnboardingArrowView.swift */; };
 		291A53C629271B69009FFD7D /* MainOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291A53C029271B69009FFD7D /* MainOnboardingView.swift */; };
+		292B7DE0292AEC3900C21C23 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292B7DDF292AEC3900C21C23 /* NotificationView.swift */; };
+		292B7DE2292AEC6600C21C23 /* RequestCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292B7DE1292AEC6600C21C23 /* RequestCellView.swift */; };
 		296C077A29284FFA00B5FFD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 296C077929284FFA00B5FFD8 /* GoogleService-Info.plist */; };
 		296C077D292852A700B5FFD8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 296C077C292852A700B5FFD8 /* FirebaseAnalytics */; };
 		296C077F292852A700B5FFD8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 296C077E292852A700B5FFD8 /* FirebaseAuth */; };
@@ -43,6 +45,8 @@
 		291A53BE29271B69009FFD7D /* DummyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 		291A53BF29271B69009FFD7D /* OnboardingArrowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingArrowView.swift; sourceTree = "<group>"; };
 		291A53C029271B69009FFD7D /* MainOnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainOnboardingView.swift; sourceTree = "<group>"; };
+		292B7DDF292AEC3900C21C23 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		292B7DE1292AEC6600C21C23 /* RequestCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCellView.swift; sourceTree = "<group>"; };
 		296C077929284FFA00B5FFD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		296C07862928675000B5FFD8 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		296C078929286FCF00B5FFD8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 				2984B81C2929BC0E00DFC042 /* ProfileView.swift */,
 				2984B8202929BC3900DFC042 /* FlexibleView.swift */,
 				2984B81E2929BC2400DFC042 /* BitmojiDetailView.swift */,
+				292B7DDF292AEC3900C21C23 /* NotificationView.swift */,
+				292B7DE1292AEC6600C21C23 /* RequestCellView.swift */,
 				296C078D2928733100B5FFD8 /* DiscoverViewModel.swift */,
 			);
 			path = "Discover Views";
@@ -302,11 +308,13 @@
 				CAC21F3421E64C3000A9BC35 /* InitialViewController.swift in Sources */,
 				2984B81D2929BC0E00DFC042 /* ProfileView.swift in Sources */,
 				296C07872928675000B5FFD8 /* DatabaseManager.swift in Sources */,
+				292B7DE0292AEC3900C21C23 /* NotificationView.swift in Sources */,
 				291A53C329271B69009FFD7D /* PageView.swift in Sources */,
 				CAC21F0521E4FC6E00A9BC35 /* AppDelegate.swift in Sources */,
 				291A53C429271B69009FFD7D /* DummyData.swift in Sources */,
 				2984B81F2929BC2400DFC042 /* BitmojiDetailView.swift in Sources */,
 				291A53B729271A6A009FFD7D /* DiscoverView.swift in Sources */,
+				292B7DE2292AEC6600C21C23 /* RequestCellView.swift in Sources */,
 				291A53C629271B69009FFD7D /* MainOnboardingView.swift in Sources */,
 				291A53C529271B69009FFD7D /* OnboardingArrowView.swift in Sources */,
 				2984B8212929BC3900DFC042 /* FlexibleView.swift in Sources */,

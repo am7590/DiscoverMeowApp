@@ -19,7 +19,7 @@ struct RequestCellView: View {
         VStack {
             
             HStack {
-                BitmojiDetailView()
+                BitmojiDetailView(imageSize: .large)
                     .frame(width: 80, height: 80)
                 
                 VStack(alignment: .leading) {

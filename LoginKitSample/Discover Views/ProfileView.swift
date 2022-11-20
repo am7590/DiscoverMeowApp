@@ -32,7 +32,7 @@ struct ProfileView: View {
                         })
                     }
                     
-                    BitmojiDetailView()
+                    BitmojiDetailView(imageSize: .large)
                         .frame(width: width/1.25)
                     
                     
@@ -40,7 +40,7 @@ struct ProfileView: View {
                 }
                 .frame(width: width)
                 
-                Text("Alek")
+                Text(DatabaseManager.shared.user?.displayName ?? "")
                     .font(.system(size: 34, design: .rounded).bold())
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                 

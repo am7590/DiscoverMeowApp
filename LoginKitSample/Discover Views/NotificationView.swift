@@ -32,7 +32,7 @@ struct NotificationView: View {
                 }
                 .padding(.horizontal)
                 
-                let fakeUser = User(displayName: "Name", bitmojiURL: DatabaseManager.shared.user!.bitmojiURL, token: "")
+                let fakeUser = User(displayName: "Alek", bitmojiURL: DatabaseManager.shared.user!.bitmojiURL, token: "")
                 let fakeRequest = Request(user: fakeUser, message: "Lets be friends")
                 
                 ScrollView {

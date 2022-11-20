@@ -8,16 +8,33 @@
 
 import SwiftUI
 
+enum ImageSize {
+    case small, large
+}
+
 struct BitmojiDetailView: View {
-   // var user: User
+    var imageSize: ImageSize
     
     var body: some View {
         ZStack {
             VStack {
-                Image("alek")
-                    .resizable()
-                    .scaledToFit()
+                //                Image("alek")
+                //                    .resizable()
+                //                    .scaledToFit()
                 //Text(user.name)
+                
+                AsyncImage(
+                    url: DatabaseManager.shared.user?.bitmojiURL,
+                    content: { image in
+                        image.resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: imageSize == .large ? 200 : 50, maxHeight: imageSize == .large ? 200 : 50)
+                            //.background(Circle().frame(width: imageSize == .large ? 205 : 0, height: imageSize == .large ? 205 : 0))
+                    },
+                    placeholder: {
+                        ProgressView()
+                    })
+                .foregroundColor(imageSize == .large ? .blue : .clear)
             }
         }
     }
