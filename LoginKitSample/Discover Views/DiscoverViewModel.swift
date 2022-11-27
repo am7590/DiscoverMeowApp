@@ -60,4 +60,17 @@ class DiscoverViewModel: ObservableObject {
                 }
             })
     }
+    
+    @Published var selectedBitmoji: User = User(displayName: "Alek", bitmojiURL: URL(string: "www.google.com")!, token: "")
+    @Published var showSelectedBitmoji = false
+    @Published var offset: CGSize = .zero
+    @Published var scale : CGFloat = 1
+    
+    lazy var showClearBitmojiView = { (video: User) in
+        return self.showSelectedBitmoji && self.selectedBitmoji.id == video.id
+    }
+    
+    lazy var scaleEffect = { (video: User) in
+        return self.showClearBitmojiView(video) ? self.scale : 1
+    }
 }
