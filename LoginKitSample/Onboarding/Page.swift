@@ -85,14 +85,6 @@ enum Page: Identifiable, Equatable {
             return .left
         }
     }
-    
-    var transitionToDiscoverView: Bool {
-        if case .preferences = self {
-            return true
-        } else {
-            return false
-        }
-    }
 }
 
 
@@ -166,24 +158,24 @@ struct PreferencesView: View {
         VStack {
             Spacer()
             
-//            FlexibleView(
-//                availableWidth: UIScreen.main.bounds.width-16,
-//                data: ["⚽️", "🎣", "🎤", "🏕", "👨‍🍳", "⚽️", "🎣", "🎤", "🏕", "👨‍🍳", "⚽️", "🎣", "🎤", "🏕", "👨‍🍳", "..."],
-//                spacing: 12,
-//                alignment: .leading
-//            ) { item in
-//                
-//                Text(verbatim: item)
-//                    .padding(12)
-//                    .background(
-//                        RoundedRectangle(cornerRadius: 8)
-//                            .fill(Color("LightYellow"))
-//                            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-//                            .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
-//                    )
-//            }
-//            .frame(width: UIScreen.main.bounds.width, height: 40)
-//            .padding(.vertical)
+            FlexibleView(
+                availableWidth: UIScreen.main.bounds.width-16,
+                data: ["⚽️", "🎣", "🎤", "🏕", "👨‍🍳", "⚽️", "🎣", "🎤", "🏕", "👨‍🍳", "⚽️", "🎣", "🎤", "🏕", "👨‍🍳", "..."],
+                spacing: 12,
+                alignment: .leading
+            ) { item in
+                
+                Text(verbatim: item)
+                    .padding(12)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(Color("LightYellow"))
+                            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                            .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
+                    )
+            }
+            //.frame(width: UIScreen.main.bounds.width, height: 40)
+            .padding(.vertical)
             
             
             Group {
@@ -192,19 +184,17 @@ struct PreferencesView: View {
                         .bold()
                 }
                 .font(.title3)
-                .frame(width: 250)
+                .frame(width: 250, height: 40)
                 .background(.red)
                 .clipShape(Capsule())
             }
             .onTapGesture {
                 isActive = true
             }
-            padding(.top, 50)
-            
-            NavigationLink(destination: DiscoverView(), isActive: $isActive) { }
-                .isDetailLink(false)
-            
+            .padding(.top, 50)
+            .fullScreenCover(isPresented: self.$isActive, content: {
+                                DiscoverView()
+                            })
         }
-        .frame(width: UIScreen.main.bounds.width)
     }
 }

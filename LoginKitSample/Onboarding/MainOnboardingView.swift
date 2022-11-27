@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainOnboardingView: View {
-    @ObservedObject var viewModel: OnboardingViewModel
+    @ObservedObject var viewModel = OnboardingViewModel()
     
     var body: some View {
         NavigationView {
@@ -36,7 +36,7 @@ struct MainOnboardingView: View {
             .background(Color("MeowOrange"))
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        
+//
 //        .background(
 //            RadialGradient(gradient: Gradient(colors: [.orange, .white]), center: .center, startRadius: 0, endRadius: 400)
 //            )

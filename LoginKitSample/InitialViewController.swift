@@ -39,7 +39,7 @@ extension InitialViewController {
 
     fileprivate func moveToOnboardingView() {
         DispatchQueue.main.async {
-            UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: MainOnboardingView(viewModel: OnboardingViewModel()))
+            UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: MainOnboardingView())
             UIApplication.shared.windows.first?.makeKeyAndVisible()
         }
     }
