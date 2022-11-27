@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Login Kit</string>
+	<string>DiscoverMeow</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -27,7 +27,7 @@
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>alek-url</string>
+				<string>alek-url-app</string>
 			</array>
 		</dict>
 	</array>
@@ -40,9 +40,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>SCSDKClientId</key>
-	<string>e96fe7b5-543d-4ba9-9011-a453de7a76e4</string>
+	<string>f2af4202-b526-429b-8a7c-2b313fbe33fb</string>
 	<key>SCSDKRedirectUrl</key>
-	<string>alek-url://loginwithsnap</string>
+	<string>alek-url-app://loginwithsnap</string>
 	<key>SCSDKScopes</key>
 	<array>
 		<string>https://auth.snapchat.com/oauth2/api/user.display_name</string>
