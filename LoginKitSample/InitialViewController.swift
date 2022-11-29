@@ -22,12 +22,12 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if SCSDKLoginClient.isUserLoggedIn {
-            moveToDiscoverView()
-        }
-        
         if !UserDefaultsStorageManager.shared.userHasCompletedOnboarding {
             moveToOnboardingView()
+        }
+        
+        if SCSDKLoginClient.isUserLoggedIn {
+            moveToDiscoverView()
         }
         
         messageLabel?.textColor = .black
@@ -45,6 +45,8 @@ extension InitialViewController {
     }
 
     fileprivate func moveToOnboardingView() {
+        UserDefaultsStorageManager.shared.setHasLoggedIn(with: false)
+        
         DispatchQueue.main.async {
             UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: MainOnboardingView())
             UIApplication.shared.windows.first?.makeKeyAndVisible()
@@ -55,7 +57,6 @@ extension InitialViewController {
         SCSDKLoginClient.login(from: self) { (success: Bool, error: Error?) in
             if success {
                 self.moveToOnboardingView()
-                UserDefaultsStorageManager.shared.setHasLoggedIn(with: false)
                 self.discoverViewModel.fetchUserData()
             }
             if let error = error {

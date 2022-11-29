@@ -14,11 +14,7 @@ final class UserDefaultsStorageManager {
         static let hasLoggedInBefore = "hasLoggedInBefore"
         static let currentUser = "currentUser"
     }
-    
-    init() {
-        
-    }
-    
+
     static let shared = UserDefaultsStorageManager()
     
     let userDefaults = UserDefaults.standard
@@ -49,7 +45,9 @@ extension UserDefaultsStorageManager {
     }
     
     private func getHasLoggedIn() -> Bool {
-        return userDefaults.bool(forKey: Constants.hasLoggedInBefore)
+        let userHasLoggedIn = userDefaults.bool(forKey: Constants.hasLoggedInBefore)
+        print("User has \(userHasLoggedIn ? "" : "not") logged in")
+        return userHasLoggedIn
     }
     
     public func setUser(with user: User) {
@@ -61,7 +59,6 @@ extension UserDefaultsStorageManager {
             print(EncodingError.encodeFailed(error: error.localizedDescription))
             print(error)
         }
-        
     }
         
     public func setHasLoggedIn(with bool: Bool) {

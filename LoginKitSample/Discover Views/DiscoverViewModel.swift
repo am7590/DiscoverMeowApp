@@ -22,11 +22,9 @@ class DiscoverViewModel: ObservableObject {
     public init() {
         self.fetchCachedUserData()
         self.fetchUserData()
-        UserDefaultsStorageManager.shared.setHasLoggedIn(with: true)
     }
     
     public func fetchUserData() {
-        
         let builder = SCSDKUserDataQueryBuilder().withDisplayName().withBitmojiTwoDAvatarUrl().withExternalId().withProfileLink().withIdToken().withBitmojiTwoDAvatarUrl()
         SCSDKLoginClient.fetchUserData(
             with: builder.build(),
@@ -41,6 +39,7 @@ class DiscoverViewModel: ObservableObject {
                 let currentUser = User(displayName: name, bitmojiURL: URL(string: url)!, token: token)
                 DatabaseManager.shared.doesUserExist(user: currentUser)
                 UserDefaultsStorageManager.shared.setUser(with: currentUser)  // Caches User struct in UserDefaults. It will still refresh upon each login to refresh bitmoji url.
+                UserDefaultsStorageManager.shared.setHasLoggedIn(with: true)
             },
             failure: { (error: Error?, isUserLoggedOut: Bool) in
                 if let error = error {

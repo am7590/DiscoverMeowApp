@@ -64,4 +64,12 @@ final class DatabaseManager {
             }
         }        
     }
+    
+    public func updateCountry(country: String) {
+        
+    }
+    
+    public func updateBirthdate(birthdate: Date) {
+        
+    }
 }
