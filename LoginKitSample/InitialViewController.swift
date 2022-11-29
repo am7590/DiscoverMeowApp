@@ -17,6 +17,8 @@ class InitialViewController: UIViewController {
     @IBOutlet fileprivate weak var loginView: UIView?
     @IBOutlet fileprivate weak var titleLabel: UILabel?
     
+    let discoverViewModel = DiscoverViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,7 +39,7 @@ class InitialViewController: UIViewController {
 extension InitialViewController {
     fileprivate func moveToDiscoverView() {
         DispatchQueue.main.async {
-            UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: DiscoverView())
+            UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: DiscoverView(viewModel: self.discoverViewModel))
             UIApplication.shared.windows.first?.makeKeyAndVisible()
         }
     }
@@ -54,6 +56,7 @@ extension InitialViewController {
             if success {
                 self.moveToOnboardingView()
                 UserDefaultsStorageManager.shared.setHasLoggedIn(with: false)
+                self.discoverViewModel.fetchUserData()
             }
             if let error = error {
                 print("Login failed. Details: %@", error.localizedDescription)

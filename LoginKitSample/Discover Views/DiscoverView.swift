@@ -10,7 +10,7 @@ import SwiftUI
 
 struct DiscoverView: View {
     
-    @StateObject private var viewModel = DiscoverViewModel()
+    @StateObject var viewModel: DiscoverViewModel
     @State private var showProfileView = false
     @State private var showNotificationView = false
     
@@ -156,7 +156,7 @@ extension DiscoverView {
 
 struct DiscoverView_Previews: PreviewProvider {
     static var previews: some View {
-        DiscoverView()
+        DiscoverView(viewModel: DiscoverViewModel())
     }
 }
 

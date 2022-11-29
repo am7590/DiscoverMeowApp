@@ -52,7 +52,7 @@ struct PreferencesView: View {
             }
             .padding(.top, 50)
             .fullScreenCover(isPresented: self.$isActive, content: {
-                DiscoverView()
+                DiscoverView(viewModel: DiscoverViewModel())
             })
         }
     }

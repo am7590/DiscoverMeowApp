@@ -8,6 +8,10 @@
 
 import Foundation
 
-public enum EncodingError: Error {
+public enum DecodingError: Error {
     case decodeFailed(error: String)
+}
+
+public enum EncodingError: Error {
+    case encodeFailed(error: String)
 }

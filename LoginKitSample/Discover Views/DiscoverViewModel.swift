@@ -20,6 +20,7 @@ class DiscoverViewModel: ObservableObject {
     @Published var bitmojiURL: URL?
     
     public init() {
+        self.fetchCachedUserData()
         self.fetchUserData()
         UserDefaultsStorageManager.shared.setHasLoggedIn(with: true)
     }
@@ -39,21 +40,7 @@ class DiscoverViewModel: ObservableObject {
                 }
                 let currentUser = User(displayName: name, bitmojiURL: URL(string: url)!, token: token)
                 DatabaseManager.shared.doesUserExist(user: currentUser)
-                
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-//                    if !DatabaseManager.shared.doesUserExist(token: token) {
-//                        do {
-//
-//
-//
-//                            DatabaseManager.shared.addUserInfo(user: currentUser)
-//                        } catch {
-//                            fatalError(error.localizedDescription)
-//                        }
-//                    }
-//                }
-              
-                
+                UserDefaultsStorageManager.shared.setUser(with: currentUser)  // Caches User struct in UserDefaults. It will still refresh upon each login to refresh bitmoji url.
             },
             failure: { (error: Error?, isUserLoggedOut: Bool) in
                 if let error = error {
@@ -73,5 +60,13 @@ class DiscoverViewModel: ObservableObject {
     
     lazy var scaleEffect = { (video: User) in
         return self.showClearBitmojiView(video) ? self.scale : 1
+    }
+    
+    private func fetchCachedUserData() {
+        if let user = UserDefaultsStorageManager.shared.cachedUser {
+            self.displayName = user.displayName
+            self.bitmojiURL = user.bitmojiURL
+            print("fetched cached user")
+        }
     }
 }

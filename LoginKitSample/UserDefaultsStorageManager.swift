@@ -26,6 +26,10 @@ final class UserDefaultsStorageManager {
     public var userHasCompletedOnboarding: Bool {
         getHasLoggedIn()
     }
+    
+    public var cachedUser: User? {
+        getUser()
+    }
 }
 
 extension UserDefaultsStorageManager {
@@ -37,22 +41,30 @@ extension UserDefaultsStorageManager {
                 let user = try decoder.decode(User.self, from: userData)
                 return user
             } catch {
-                print(EncodingError.decodeFailed(error: error.localizedDescription))
+                print(DecodingError.decodeFailed(error: error.localizedDescription))
             }
         }
         
         return nil
     }
     
+    private func getHasLoggedIn() -> Bool {
+        return userDefaults.bool(forKey: Constants.hasLoggedInBefore)
+    }
+    
     public func setUser(with user: User) {
-        userDefaults.set(user, forKey: Constants.currentUser)
+        do {
+            let encoder = JSONEncoder()
+            let userData = try encoder.encode(user)
+            userDefaults.set(userData, forKey: Constants.currentUser)
+        } catch {
+            print(EncodingError.encodeFailed(error: error.localizedDescription))
+            print(error)
+        }
+        
     }
         
     public func setHasLoggedIn(with bool: Bool) {
         userDefaults.set(bool, forKey: Constants.hasLoggedInBefore)
-    }
-    
-    private func getHasLoggedIn() -> Bool {
-        return userDefaults.bool(forKey: Constants.hasLoggedInBefore)
     }
 }
