@@ -14,6 +14,9 @@ struct PageView: View {
         GeometryReader { proxy in
             let width = proxy.size.width/1.75
             VStack(spacing: 10) {
+                
+                Spacer()
+                
                 if let image = page.image {
                     Image("\(image)")
                         .resizable()
@@ -35,7 +38,6 @@ struct PageView: View {
                 
             }
         }
-       
     }
 }
 
