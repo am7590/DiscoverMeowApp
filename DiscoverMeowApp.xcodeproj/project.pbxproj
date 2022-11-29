@@ -17,6 +17,11 @@
 		292B7DE0292AEC3900C21C23 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292B7DDF292AEC3900C21C23 /* NotificationView.swift */; };
 		292B7DE2292AEC6600C21C23 /* RequestCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292B7DE1292AEC6600C21C23 /* RequestCellView.swift */; };
 		292B7DE4292AF3FA00C21C23 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292B7DE3292AF3FA00C21C23 /* UserInfoView.swift */; };
+		295D531C29358E3E00CAE386 /* UserDefaultsStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295D531B29358E3E00CAE386 /* UserDefaultsStorageManager.swift */; };
+		295D531E29358FCA00CAE386 /* MeowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295D531D29358FCA00CAE386 /* MeowError.swift */; };
+		295D53212935957D00CAE386 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295D53202935957D00CAE386 /* PreferencesView.swift */; };
+		295D53232935958B00CAE386 /* SelectCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295D53222935958B00CAE386 /* SelectCountryView.swift */; };
+		295D53252935959A00CAE386 /* SelectDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295D53242935959A00CAE386 /* SelectDateView.swift */; };
 		2965AE76292B0AFF00C1C841 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2965AE75292B0AFF00C1C841 /* GoogleService-Info.plist */; };
 		296C077D292852A700B5FFD8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 296C077C292852A700B5FFD8 /* FirebaseAnalytics */; };
 		296C0781292852A700B5FFD8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 296C0780292852A700B5FFD8 /* FirebaseCrashlytics */; };
@@ -48,6 +53,11 @@
 		292B7DDF292AEC3900C21C23 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		292B7DE1292AEC6600C21C23 /* RequestCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCellView.swift; sourceTree = "<group>"; };
 		292B7DE3292AF3FA00C21C23 /* UserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
+		295D531B29358E3E00CAE386 /* UserDefaultsStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorageManager.swift; sourceTree = "<group>"; };
+		295D531D29358FCA00CAE386 /* MeowError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeowError.swift; sourceTree = "<group>"; };
+		295D53202935957D00CAE386 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
+		295D53222935958B00CAE386 /* SelectCountryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountryView.swift; sourceTree = "<group>"; };
+		295D53242935959A00CAE386 /* SelectDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateView.swift; sourceTree = "<group>"; };
 		2965AE75292B0AFF00C1C841 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		296C07862928675000B5FFD8 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		296C078929286FCF00B5FFD8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -103,6 +113,7 @@
 				291A53BB29271B69009FFD7D /* OnboardingViewModel.swift */,
 				291A53BC29271B69009FFD7D /* Page.swift */,
 				291A53BD29271B69009FFD7D /* PageView.swift */,
+				295D531F2935957000CAE386 /* PageViews */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -120,6 +131,16 @@
 				296C078D2928733100B5FFD8 /* DiscoverViewModel.swift */,
 			);
 			path = "Discover Views";
+			sourceTree = "<group>";
+		};
+		295D531F2935957000CAE386 /* PageViews */ = {
+			isa = PBXGroup;
+			children = (
+				295D53202935957D00CAE386 /* PreferencesView.swift */,
+				295D53222935958B00CAE386 /* SelectCountryView.swift */,
+				295D53242935959A00CAE386 /* SelectDateView.swift */,
+			);
+			path = PageViews;
 			sourceTree = "<group>";
 		};
 		296C078829286FCA00B5FFD8 /* Models */ = {
@@ -167,6 +188,8 @@
 				CAC21F0421E4FC6E00A9BC35 /* AppDelegate.swift */,
 				CAC21F3321E64C3000A9BC35 /* InitialViewController.swift */,
 				296C07862928675000B5FFD8 /* DatabaseManager.swift */,
+				295D531B29358E3E00CAE386 /* UserDefaultsStorageManager.swift */,
+				295D531D29358FCA00CAE386 /* MeowError.swift */,
 				296C078829286FCA00B5FFD8 /* Models */,
 				291A53B829271A78009FFD7D /* Onboarding */,
 				291A53B929271A81009FFD7D /* Discover Views */,
@@ -307,16 +330,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAC21F3421E64C3000A9BC35 /* InitialViewController.swift in Sources */,
+				295D531C29358E3E00CAE386 /* UserDefaultsStorageManager.swift in Sources */,
 				2984B81D2929BC0E00DFC042 /* ProfileView.swift in Sources */,
 				296C07872928675000B5FFD8 /* DatabaseManager.swift in Sources */,
+				295D53252935959A00CAE386 /* SelectDateView.swift in Sources */,
 				292B7DE0292AEC3900C21C23 /* NotificationView.swift in Sources */,
 				291A53C329271B69009FFD7D /* PageView.swift in Sources */,
 				CAC21F0521E4FC6E00A9BC35 /* AppDelegate.swift in Sources */,
 				291A53C429271B69009FFD7D /* DummyData.swift in Sources */,
+				295D531E29358FCA00CAE386 /* MeowError.swift in Sources */,
 				2984B81F2929BC2400DFC042 /* BitmojiDetailView.swift in Sources */,
 				291A53B729271A6A009FFD7D /* DiscoverView.swift in Sources */,
 				292B7DE4292AF3FA00C21C23 /* UserInfoView.swift in Sources */,
 				292B7DE2292AEC6600C21C23 /* RequestCellView.swift in Sources */,
+				295D53232935958B00CAE386 /* SelectCountryView.swift in Sources */,
+				295D53212935957D00CAE386 /* PreferencesView.swift in Sources */,
 				291A53C629271B69009FFD7D /* MainOnboardingView.swift in Sources */,
 				291A53C529271B69009FFD7D /* OnboardingArrowView.swift in Sources */,
 				2984B8212929BC3900DFC042 /* FlexibleView.swift in Sources */,

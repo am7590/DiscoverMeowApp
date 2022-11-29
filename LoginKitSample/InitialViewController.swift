@@ -24,11 +24,16 @@ class InitialViewController: UIViewController {
             moveToDiscoverView()
         }
         
+        if !UserDefaultsStorageManager.shared.userHasCompletedOnboarding {
+            moveToOnboardingView()
+        }
+        
         messageLabel?.textColor = .black
         titleLabel?.textColor = .black
     }
 }
 
+// TODO: Depreciated code
 extension InitialViewController {
     fileprivate func moveToDiscoverView() {
         DispatchQueue.main.async {
@@ -48,6 +53,7 @@ extension InitialViewController {
         SCSDKLoginClient.login(from: self) { (success: Bool, error: Error?) in
             if success {
                 self.moveToOnboardingView()
+                UserDefaultsStorageManager.shared.setHasLoggedIn(with: false)
             }
             if let error = error {
                 print("Login failed. Details: %@", error.localizedDescription)

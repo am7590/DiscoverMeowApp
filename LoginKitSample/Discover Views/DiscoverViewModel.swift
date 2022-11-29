@@ -21,6 +21,7 @@ class DiscoverViewModel: ObservableObject {
     
     public init() {
         self.fetchUserData()
+        UserDefaultsStorageManager.shared.setHasLoggedIn(with: true)
     }
     
     public func fetchUserData() {
