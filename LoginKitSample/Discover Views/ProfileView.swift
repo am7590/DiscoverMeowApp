@@ -44,7 +44,11 @@ struct ProfileView: View {
                     .font(.system(size: 34, design: .rounded).bold())
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                 
-                Text("🇺🇸 United States")
+                // "🇺🇸 United States"
+                Group {
+                    Text(" \((DatabaseManager.shared.user?.country ?? "US").flag())")
+                    + Text(" \((DatabaseManager.shared.user?.country ?? "US").countryName())")
+                }
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                     .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
                     .font(.title3.bold())

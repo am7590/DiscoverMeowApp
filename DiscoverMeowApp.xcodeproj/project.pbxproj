@@ -34,6 +34,7 @@
 		2984B81D2929BC0E00DFC042 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2984B81C2929BC0E00DFC042 /* ProfileView.swift */; };
 		2984B81F2929BC2400DFC042 /* BitmojiDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2984B81E2929BC2400DFC042 /* BitmojiDetailView.swift */; };
 		2984B8212929BC3900DFC042 /* FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2984B8202929BC3900DFC042 /* FlexibleView.swift */; };
+		29A445B92936F84B00653106 /* String+Country&Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A445B82936F84B00653106 /* String+Country&Flag.swift */; };
 		5F41F3302A9EF52BFFE6339D /* Pods_DiscoverMeowApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB485422CFC9D71A7BEA72C3 /* Pods_DiscoverMeowApp.framework */; };
 		CAC21F0521E4FC6E00A9BC35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC21F0421E4FC6E00A9BC35 /* AppDelegate.swift */; };
 		CAC21F0A21E4FC6E00A9BC35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC21F0821E4FC6E00A9BC35 /* Main.storyboard */; };
@@ -65,6 +66,7 @@
 		2984B81C2929BC0E00DFC042 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		2984B81E2929BC2400DFC042 /* BitmojiDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitmojiDetailView.swift; sourceTree = "<group>"; };
 		2984B8202929BC3900DFC042 /* FlexibleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleView.swift; sourceTree = "<group>"; };
+		29A445B82936F84B00653106 /* String+Country&Flag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Country&Flag.swift"; sourceTree = "<group>"; };
 		49F7DD3CD9D1960B2FFC168D /* Pods-LoginKitSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginKitSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoginKitSample/Pods-LoginKitSample.debug.xcconfig"; sourceTree = "<group>"; };
 		65B664A9D735E4A62DA2BBD3 /* Pods-DiscoverMeowApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscoverMeowApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DiscoverMeowApp/Pods-DiscoverMeowApp.debug.xcconfig"; sourceTree = "<group>"; };
 		AB485422CFC9D71A7BEA72C3 /* Pods_DiscoverMeowApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DiscoverMeowApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,6 +192,7 @@
 				296C07862928675000B5FFD8 /* DatabaseManager.swift */,
 				295D531B29358E3E00CAE386 /* UserDefaultsStorageManager.swift */,
 				295D531D29358FCA00CAE386 /* MeowError.swift */,
+				29A445B82936F84B00653106 /* String+Country&Flag.swift */,
 				296C078829286FCA00B5FFD8 /* Models */,
 				291A53B829271A78009FFD7D /* Onboarding */,
 				291A53B929271A81009FFD7D /* Discover Views */,
@@ -339,6 +342,7 @@
 				CAC21F0521E4FC6E00A9BC35 /* AppDelegate.swift in Sources */,
 				291A53C429271B69009FFD7D /* DummyData.swift in Sources */,
 				295D531E29358FCA00CAE386 /* MeowError.swift in Sources */,
+				29A445B92936F84B00653106 /* String+Country&Flag.swift in Sources */,
 				2984B81F2929BC2400DFC042 /* BitmojiDetailView.swift in Sources */,
 				291A53B729271A6A009FFD7D /* DiscoverView.swift in Sources */,
 				292B7DE4292AF3FA00C21C23 /* UserInfoView.swift in Sources */,

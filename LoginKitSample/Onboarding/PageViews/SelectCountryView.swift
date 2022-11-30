@@ -15,20 +15,11 @@ struct SelectCountryView: View {
         VStack {
             Spacer()
             CountryPicker(countryId: $countryId)
-            Text("You picked \(countryId) \(flag(countryId))")
+            Text("You picked \(countryId) \(countryId.flag()))")
             Spacer()
         }
         .background(Color("MeowOrange"))
         .frame(width: UIScreen.main.bounds.width)
-    }
-   
-    func flag(_ country: String) -> String {
-        let base : UInt32 = 127397
-        var s = ""
-        for v in country.unicodeScalars {
-            s.unicodeScalars.append(UnicodeScalar(base + v.value)!)
-        }
-        return String(s)
     }
 }
 
@@ -54,3 +45,5 @@ struct SelectCountryView_Previews: PreviewProvider {
         SelectCountryView()
     }
 }
+
+
