@@ -25,6 +25,7 @@ class DiscoverViewModel: ObservableObject {
     }
     
     public func fetchUserData() {
+        print("Fetching user data from LoginKit")
         let builder = SCSDKUserDataQueryBuilder().withDisplayName().withBitmojiTwoDAvatarUrl().withExternalId().withProfileLink().withIdToken().withBitmojiTwoDAvatarUrl()
         SCSDKLoginClient.fetchUserData(
             with: builder.build(),
@@ -34,8 +35,8 @@ class DiscoverViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.displayName = userData.displayName ?? "No Name"
                     self.bitmojiURL = URL(string: userData.bitmojiTwoDAvatarUrl ?? "")!
-                    
                 }
+
                 let currentUser = User(displayName: name, bitmojiURL: URL(string: url)!, token: token)
                 DatabaseManager.shared.doesUserExist(user: currentUser)
                 UserDefaultsStorageManager.shared.setUser(with: currentUser)  // Caches User struct in UserDefaults. It will still refresh upon each login to refresh bitmoji url.

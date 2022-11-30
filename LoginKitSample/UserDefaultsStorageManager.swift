@@ -18,6 +18,14 @@ final class UserDefaultsStorageManager {
     static let shared = UserDefaultsStorageManager()
     
     let userDefaults = UserDefaults.standard
+        
+    init() {
+        userDefaults.register(
+            defaults: [
+                Constants.hasLoggedInBefore: false
+            ]
+        )
+    }
     
     public var userHasCompletedOnboarding: Bool {
         getHasLoggedIn()

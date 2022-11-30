@@ -19,7 +19,7 @@ struct PreferencesView: View {
             
             FlexibleView(
                 availableWidth: UIScreen.main.bounds.width-16,
-                data: ["⚽️", "🎣", "🎤", "🏕", "👨‍🍳", "⚽️", "🎣", "🎤", "🏕", "👨‍🍳", "⚽️", "🎣", "🎤", "🏕", "👨‍🍳", "..."],
+                data: ["⚽️", "🎣", "🎤", "🏕", "👨‍🍳"],
                 spacing: 12,
                 alignment: .leading
             ) { item in

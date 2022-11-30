@@ -22,11 +22,7 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if !UserDefaultsStorageManager.shared.userHasCompletedOnboarding {
-            moveToOnboardingView()
-        }
-        
-        if SCSDKLoginClient.isUserLoggedIn {
+        if SCSDKLoginClient.isUserLoggedIn && UserDefaultsStorageManager.shared.userHasCompletedOnboarding {
             moveToDiscoverView()
         }
         
@@ -37,7 +33,7 @@ class InitialViewController: UIViewController {
 
 // TODO: Depreciated code
 extension InitialViewController {
-    fileprivate func moveToDiscoverView() {
+    fileprivate func moveToDiscoverView() {        
         DispatchQueue.main.async {
             UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: DiscoverView(viewModel: self.discoverViewModel))
             UIApplication.shared.windows.first?.makeKeyAndVisible()
