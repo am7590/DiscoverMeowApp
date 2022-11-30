@@ -16,9 +16,12 @@ struct SelectDateView: View {
         VStack {
             Spacer()
             
-            DatePicker("", selection: $birthDate, in: ...Date(), displayedComponents: .date).datePickerStyle(WheelDatePickerStyle()).font(.title)
+            DatePicker("", selection: $birthDate, in: ...Date(), displayedComponents: .date)
+                .datePickerStyle(WheelDatePickerStyle())
+                .font(.title)
                 .onChange(of: birthDate, perform: { value in
                     age = Calendar.current.dateComponents([.year, .month, .day], from: birthDate, to: Date())
+                    DatabaseManager.shared.updateBirthdate(birthdate: birthDate)
                 })
             Text("Please confirm you are \(age.year ?? 0) years old")
                 .font(.title3)

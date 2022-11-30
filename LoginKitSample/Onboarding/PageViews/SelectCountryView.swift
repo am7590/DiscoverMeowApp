@@ -43,6 +43,9 @@ struct CountryPicker: View {
                     .tag(iso)
             }
         }
+        .onChange(of: $countryId.wrappedValue, perform: { value in
+            DatabaseManager.shared.updateCountry(country: value)
+        })
     }
 }
 
