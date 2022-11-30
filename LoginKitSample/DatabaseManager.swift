@@ -15,6 +15,7 @@ final class DatabaseManager {
     
     private var db = Firestore.firestore()
     var user: User?
+    private var userReference: DocumentReference?
     
 //    public func checkIfUserTokenExists(token: String) -> DocumentReference {
 //        return db.collection("users").document(token)
@@ -23,6 +24,7 @@ final class DatabaseManager {
     public func addUserInfo(user: User) {
         do {
             let newUserReference = try db.collection("users").addDocument(from: user)
+            self.userReference = newUserReference
             print("Added \(user.displayName) to the database with reference \(newUserReference)")
         } catch {
             fatalError("Could not add user to database")
@@ -65,11 +67,38 @@ final class DatabaseManager {
         }        
     }
     
+    // TODO: Refactor next two funcs
     public func updateCountry(country: String) {
-        
+        do {
+            self.db.collection("users").document(self.userReference!.documentID).getDocument() { snapshot, error in
+                if let error = error {
+                    print("Error finding user: \(error)")
+                } else {
+                    snapshot?.reference.updateData([
+                        "country": country
+                    ])
+                    print("Successfully updated country to \(country)")
+                }  
+            }
+        } catch {
+            fatalError("Could not add user to database")
+        }
     }
     
     public func updateBirthdate(birthdate: Date) {
-        
+        do {
+            self.db.collection("users").document(self.userReference!.documentID).getDocument() { snapshot, error in
+                if let error = error {
+                    print("Error finding user: \(error)")
+                } else {
+                    snapshot?.reference.updateData([
+                        "birthdate": birthdate
+                    ])
+                    print("Successfully updated birthdate to \(birthdate)")
+                }
+            }
+        } catch {
+            fatalError("Could not add user to database")
+        }
     }
 }
