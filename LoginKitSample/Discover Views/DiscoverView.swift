@@ -128,7 +128,7 @@ extension DiscoverView {
                             .matchedGeometryEffect(id: viewModel.selectedBitmoji.id, in: dragAnimation)
                             .modifier(SwipeToDismissModifier(onDismiss: {
                                 print("swiped")
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                                     withAnimation(.default){
                                         viewModel.showSelectedBitmoji = false
                                     }

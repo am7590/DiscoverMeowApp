@@ -22,7 +22,7 @@ struct SwipeToDismissModifier: ViewModifier {
             .simultaneousGesture(
                 DragGesture()
                     .onChanged { gesture in
-                        if gesture.translation.width < 150 {
+                        if gesture.translation.width < 250 {
                             offset = gesture.translation
                         }
                     }
@@ -36,9 +36,6 @@ struct SwipeToDismissModifier: ViewModifier {
                             }
                             
                             onDismiss()
-                            offset = .zero
-                        } else {
-                            offset = .zero
                         }
                     }
             )
