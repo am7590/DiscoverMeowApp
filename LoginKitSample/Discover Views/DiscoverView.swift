@@ -63,6 +63,9 @@ struct DiscoverView: View {
                     
                         BitmojiDummyDetailView()
                             .cornerRadius(30)
+                            .onTapGesture {
+                                viewModel.showSelectedBitmoji = true
+                            }
                         
                         BitmojiDummyDetailView()
                             .cornerRadius(30)
@@ -116,13 +119,21 @@ extension DiscoverView {
                     VStack {
                         UserInfoView(viewModel: viewModel)
                             .onTapGesture {
-                                //withAnimation(.default){
+                                withAnimation(.default) {
                                     viewModel.showSelectedBitmoji = false
                                     viewModel.offset = .zero
                                     viewModel.scale = 1
-                               // }
+                                }
                             }
                             .matchedGeometryEffect(id: viewModel.selectedBitmoji.id, in: dragAnimation)
+                            .modifier(SwipeToDismissModifier(onDismiss: {
+                                print("swiped")
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                                    withAnimation(.default){
+                                        viewModel.showSelectedBitmoji = false
+                                    }
+                                })
+                            }))
                         
                     }
                 }

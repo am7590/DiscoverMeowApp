@@ -28,12 +28,13 @@ struct BitmojiDetailView: View {
                     content: { image in
                         image.resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: imageSize == .large ? 200 : 50, maxHeight: imageSize == .large ? 200 : 50)
+                            
                             //.background(Circle().frame(width: imageSize == .large ? 205 : 0, height: imageSize == .large ? 205 : 0))
                     },
                     placeholder: {
                         ProgressView()
                     })
+                .frame(maxWidth: imageSize == .large ? 200 : 50, maxHeight: imageSize == .large ? 200 : 50)
                 .foregroundColor(imageSize == .large ? .blue : .clear)
             }
         }

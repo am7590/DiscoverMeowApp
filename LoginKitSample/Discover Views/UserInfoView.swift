@@ -6,111 +6,144 @@
 //
 
 import SwiftUI
+import ConfettiSwiftUI
 
 struct UserInfoView: View {
     @StateObject var viewModel: DiscoverViewModel
+    @State private var counter: Int = 0
     
     var body: some View {
+        
         VStack {
             GeometryReader { proxy in
                 let bitmojiSize = (proxy.size.width / 2) - 25
                 HStack {
-                    BitmojiDetailView(imageSize: .small)
-                        .cornerRadius(20)
-                        .frame(width: bitmojiSize, height: bitmojiSize)
-                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                        .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
                     
-                    VStack(alignment: .leading) {
-                        Text("mushroom")
-                            .font(.title)
-                        //.frame(width: bitmojiSize)
-                        //                            .padding(.horizontal, 8)
-                        //                            .padding(.vertical, 2)
-                        //                            .background(
-                        //                                Capsule(style: .continuous)
-                        //                                    .fill(Color("LightYellow"))
-                        //                            )
+                    ZStack {
+                        
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(Color("LightYellow"))
+                            .padding()
                             .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                             .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
-                            .redacted(reason: .placeholder)
-                        
-                        Text("school status")
-                            .font(.title3.bold())
-                            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                            .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
-                            .redacted(reason: .placeholder)
                         
                         
-                        Text("🇺🇸 United States")
-                            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                            .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
-                            .font(.subheadline.bold())
-                        
-                        
-                        FlexibleView(
-                            availableWidth: bitmojiSize,
-                            data: ["⚽️", "🎣", "🎤", "🏕"], // "👨‍🍳"
-                            spacing: 4,
-                            alignment: .leading
-                        ) { item in
-                            Text(verbatim: item)
-                                .padding(2)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .fill(Color("LightYellow"))
-                                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                                        .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
-                                )
+                        HStack {
                             
-                        }
-                        
-                        Spacer()
-                        
+                            VStack {
+                                BitmojiDetailView(imageSize: .large)
+                                    .cornerRadius(20)
+                                    .frame(width: bitmojiSize, height: bitmojiSize)
+                                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                                    .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
+                                
+                                
+                                Spacer()
+                            }
+                            
+                            VStack(alignment: .leading) {
+                                Text("mushroom")
+                                    .font(.largeTitle)
+                                //.frame(width: bitmojiSize)
+                                //                            .padding(.horizontal, 8)
+                                //                            .padding(.vertical, 2)
+                                //                            .background(
+                                //                                Capsule(style: .continuous)
+                                //                                    .fill(Color("LightYellow"))
+                                //                            )
+                                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                                    .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
+                                    .redacted(reason: .placeholder)
+                                
+                                Text("school status")
+                                    .font(.title2.bold())
+                                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                                    .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
+                                    .redacted(reason: .placeholder)
+                                
+                                
+                                Text("🇺🇸 United States")
+                                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                                    .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
+                                    .font(.title3.bold())
+                                
+                                
+                                FlexibleView(
+                                    availableWidth: bitmojiSize,
+                                    data: ["⚽️", "🎣", "🎤", "🏕"], // "👨‍🍳"
+                                    spacing: 8,
+                                    alignment: .leading
+                                ) { item in
+                                    Text(verbatim: item)
+                                        .padding(4)
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .fill(Color("LightYellow"))
+                                                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                                                .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
+                                        )
+                                    
+                                }
+                                
+                                Spacer()
+                                
+                            }
+                            
+                        }.padding([.top, .leading, .trailing])
                     }
                 }
-                .frame(height: bitmojiSize)
-                .padding([.top, .leading, .trailing])
-                
             }
-            
-            
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color("LightYellow"))
-                .padding([.bottom, .leading, .trailing])
-                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
-            
-            
             
             HStack {
                 Image(systemName: "xmark")
                     .background(Circle().fill(.red)
-                        .frame(width: 60, height: 60))
+                        .frame(width: 70, height: 70))
                     .padding(25)
+                    .padding(.bottom, 10)
                     .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 2)
                     .shadow(color: Color.red.opacity(0.4), radius: 10, x: 0, y: 2)
+                    .confettiCannon(counter: $counter, num: 50, colors: [.yellow, .orange], openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 360), radius: 200)
+                    .onTapGesture {
+                        print("swipe left")
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                            withAnimation(.default){
+                                viewModel.showSelectedBitmoji = false
+                            }
+                        })
+                    }
                 
                 Spacer()
                 
                 Image(systemName: "checkmark")
-                    .background(Circle().fill(Color("LightGreen"))
-                        .frame(width: 60, height: 60))
+                    .background(Circle().fill(.teal)
+                        .frame(width: 70, height: 70))
                     .padding(25)
+                    .padding(.bottom, 10)
                     .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 2)
                     .shadow(color: Color("LightGreen").opacity(0.4), radius: 10, x: 0, y: 2)
+                 
+                    .onTapGesture {
+                        print("swipe right")
+                        counter += 1
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                            withAnimation(.default){
+                                viewModel.showSelectedBitmoji = false
+                            }
+                        })
+                    }
             }
             .padding(.horizontal, 48)
+            
             
             Spacer()
             
         }
-        .frame(width: 300, height: 400)
+        .frame(height: 400)
         //.background(Color.yellow)
         .cornerRadius(25)
         .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
         .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
-            
+        
         
         .background(
             Rectangle()
@@ -123,6 +156,10 @@ struct UserInfoView: View {
                     y: 0
                 )
         )
+        .padding()
+        //        .modifier(SwipeToDismissModifier(onDismiss: {
+        //            print("swipe")
+        //        }))
     }
 }
 
