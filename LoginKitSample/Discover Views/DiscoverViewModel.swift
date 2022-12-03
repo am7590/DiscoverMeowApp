@@ -20,6 +20,7 @@ class DiscoverViewModel: ObservableObject {
     @Published var bitmojiURL: URL?
     @Published var swipeCount: Int = 0
     @Published var users = [User]()
+    @Published var selectedUser: User?
     
     public init() {
         self.fetchCachedUserData()

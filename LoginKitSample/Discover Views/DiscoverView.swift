@@ -67,6 +67,7 @@ struct DiscoverView: View {
                                 .cornerRadius(30)
                                 .onTapGesture {
                                     viewModel.showSelectedBitmoji = true
+                                    viewModel.selectedUser = user
                                 }
                         }
                        

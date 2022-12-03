@@ -24,63 +24,76 @@ struct UserInfoView: View {
                             .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                             .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
                         
-                        HStack {
+                        if let user = viewModel.selectedUser {
                             
-                            VStack {
-                                BitmojiDetailView(imageSize: .large)
-                                    .cornerRadius(20)
-                                    .frame(width: bitmojiSize, height: bitmojiSize)
-                                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                                    .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
+                            HStack {
                                 
-                                Spacer()
-                            }
-                            
-                            VStack(alignment: .leading) {
-                                Text("mushroom")
-                                    .font(.largeTitle)
-                                //.frame(width: bitmojiSize)
-                                //                            .padding(.horizontal, 8)
-                                //                            .padding(.vertical, 2)
-                                //                            .background(
-                                //                                Capsule(style: .continuous)
-                                //                                    .fill(Color("LightYellow"))
-                                //                            )
-                                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                                    .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
-                                    .redacted(reason: .placeholder)
-                                
-                                Text("school status")
-                                    .font(.title2.bold())
-                                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                                    .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
-                                    .redacted(reason: .placeholder)
-                                
-                                Text("🇺🇸 United States")
-                                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                                    .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
-                                    .font(.title3.bold())
-                                
-                                FlexibleView(
-                                    availableWidth: bitmojiSize,
-                                    data: ["⚽️", "🎣", "🎤", "🏕"], // "👨‍🍳"
-                                    spacing: 8,
-                                    alignment: .leading
-                                ) { item in
-                                    Text(verbatim: item)
-                                        .padding(4)
-                                        .background(
-                                            RoundedRectangle(cornerRadius: 8)
-                                                .fill(Color("LightYellow"))
-                                                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                                                .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
-                                        )
+                                VStack {
+                                    
+                                    
+                                    BitmojiDetailViewFromURL(imageSize: .large, selectedUser: user)
+                                        .cornerRadius(20)
+                                        .frame(width: bitmojiSize, height: bitmojiSize)
+                                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                                        .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
+                                    
+                                    
+                                    
+                                    //                                BitmojiDetailView(imageSize: .large)
+                                    
+                                    
+                                    Spacer()
                                 }
                                 
-                                Spacer()
-                                
-                            }
-                        }.padding([.top, .leading, .trailing])
+                                VStack(alignment: .leading) {
+                                    Text("mushroom")
+                                        .font(.largeTitle)
+                                    //.frame(width: bitmojiSize)
+                                    //                            .padding(.horizontal, 8)
+                                    //                            .padding(.vertical, 2)
+                                    //                            .background(
+                                    //                                Capsule(style: .continuous)
+                                    //                                    .fill(Color("LightYellow"))
+                                    //                            )
+                                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                                        .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
+                                        .redacted(reason: .placeholder)
+                                    
+                                    Text("school status")
+                                        .font(.title2.bold())
+                                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                                        .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
+                                        .redacted(reason: .placeholder)
+                                    
+                                    Group {
+                                        Text(" \((user.country ?? "US").flag())")
+                                        + Text(" \((user.country ?? "US").countryName())")
+                                    }
+                                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                                        .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
+                                        .font(.title3.bold())
+                                    
+                                    FlexibleView(
+                                        availableWidth: bitmojiSize,
+                                        data: ["⚽️", "🎣", "🎤", "🏕"], // "👨‍🍳"
+                                        spacing: 8,
+                                        alignment: .leading
+                                    ) { item in
+                                        Text(verbatim: item)
+                                            .padding(4)
+                                            .background(
+                                                RoundedRectangle(cornerRadius: 8)
+                                                    .fill(Color("LightYellow"))
+                                                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                                                    .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
+                                            )
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                }
+                            }.padding([.top, .leading, .trailing])
+                        }
                     }
                 }
             }
