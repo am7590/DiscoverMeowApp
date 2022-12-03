@@ -16,6 +16,7 @@ struct User: Codable, Identifiable {
     let token: String
     let country: String?
     let birthdate: Date?
+    var swipeRightList: [User]?
     
     public init(data: [String: Any]) {
         self.displayName = data["displayName"] as? String ?? ""
@@ -24,6 +25,7 @@ struct User: Codable, Identifiable {
         self.token = data["token"] as? String ?? ""
         self.country = data["country"] as? String ?? "US"
         self.birthdate = data["birthdate"] as? Date ?? Date()
+        self.swipeRightList = data["swipeRightList"] as? [User] ?? []
     }
     
     // This is for dummy data only
@@ -33,6 +35,7 @@ struct User: Codable, Identifiable {
         self.token = token
         self.country = nil
         self.birthdate = nil
+        self.swipeRightList = nil
     }
     
     init(from decoder: Decoder) throws {
@@ -40,8 +43,9 @@ struct User: Codable, Identifiable {
         self.displayName = try container.decode(String.self, forKey: .displayName)
         self.bitmojiURL = try container.decode(URL.self, forKey: .bitmojiURL)
         self.token = try container.decode(String.self, forKey: .token)
-        self.country = try container.decodeIfPresent(String.self, forKey: .birthdate)
+        self.country = try container.decodeIfPresent(String.self, forKey: .country)
         self.birthdate = try container.decodeIfPresent(Date.self, forKey: .birthdate)
+        self.swipeRightList = try container.decodeIfPresent([User].self, forKey: .swipeRightList)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -51,10 +55,11 @@ struct User: Codable, Identifiable {
         try container.encode(self.token, forKey: .token)
         try container.encode(self.country, forKey: .country)
         try container.encode(self.birthdate, forKey: .birthdate)
+        try container.encode(self.swipeRightList, forKey: .swipeRightList)
     }
     
     private enum CodingKeys: String, CodingKey {
-        case id, displayName, bitmojiURL, token, country, birthdate
+        case id, displayName, bitmojiURL, token, country, birthdate, swipeRightList
     }
 }
 
