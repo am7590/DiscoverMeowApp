@@ -6,6 +6,7 @@
 //  Copyright © 2022 Alek. All rights reserved.
 //
 
+import ConfettiSwiftUI
 import SwiftUI
 
 struct DiscoverView: View {
@@ -106,6 +107,7 @@ struct DiscoverView: View {
         .sheet(isPresented: $showNotificationView) {
             NotificationView()
         }
+        .confettiCannon(counter: $viewModel.swipeCount, num: 50, colors: [.yellow, .orange], openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 360), radius: 200)
     }
 }
 
@@ -126,8 +128,13 @@ extension DiscoverView {
                                 }
                             }
                             .matchedGeometryEffect(id: viewModel.selectedBitmoji.id, in: dragAnimation)
-                            .modifier(SwipeToDismissModifier(onDismiss: {
-                                print("swiped")
+                            .modifier(SwipeToDismissModifier(onDismiss: { swipe in
+                                print("swiped \(swipe ? "right" : "left")")
+                                
+                                if swipe {
+                                    viewModel.triggerConfetti()
+                                }
+                                
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                                     withAnimation(.default){
                                         viewModel.showSelectedBitmoji = false

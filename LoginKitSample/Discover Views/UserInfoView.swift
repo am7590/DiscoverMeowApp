@@ -6,11 +6,9 @@
 //
 
 import SwiftUI
-import ConfettiSwiftUI
 
 struct UserInfoView: View {
     @StateObject var viewModel: DiscoverViewModel
-    @State private var counter: Int = 0
     
     var body: some View {
         
@@ -18,7 +16,6 @@ struct UserInfoView: View {
             GeometryReader { proxy in
                 let bitmojiSize = (proxy.size.width / 2) - 25
                 HStack {
-                    
                     ZStack {
                         
                         RoundedRectangle(cornerRadius: 8)
@@ -26,7 +23,6 @@ struct UserInfoView: View {
                             .padding()
                             .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                             .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
-                        
                         
                         HStack {
                             
@@ -36,7 +32,6 @@ struct UserInfoView: View {
                                     .frame(width: bitmojiSize, height: bitmojiSize)
                                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                                     .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
-                                
                                 
                                 Spacer()
                             }
@@ -61,12 +56,10 @@ struct UserInfoView: View {
                                     .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
                                     .redacted(reason: .placeholder)
                                 
-                                
                                 Text("🇺🇸 United States")
                                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                                     .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
                                     .font(.title3.bold())
-                                
                                 
                                 FlexibleView(
                                     availableWidth: bitmojiSize,
@@ -82,13 +75,11 @@ struct UserInfoView: View {
                                                 .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
                                                 .shadow(color: Color.yellow.opacity(0.2), radius: 5, x: 0, y: 2)
                                         )
-                                    
                                 }
                                 
                                 Spacer()
                                 
                             }
-                            
                         }.padding([.top, .leading, .trailing])
                     }
                 }
@@ -102,7 +93,6 @@ struct UserInfoView: View {
                     .padding(.bottom, 10)
                     .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 2)
                     .shadow(color: Color.red.opacity(0.4), radius: 10, x: 0, y: 2)
-                    .confettiCannon(counter: $counter, num: 50, colors: [.yellow, .orange], openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 360), radius: 200)
                     .onTapGesture {
                         print("swipe left")
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
@@ -124,8 +114,9 @@ struct UserInfoView: View {
                  
                     .onTapGesture {
                         print("swipe right")
-                        counter += 1
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                            viewModel.triggerConfetti()
+
                             withAnimation(.default){
                                 viewModel.showSelectedBitmoji = false
                             }
@@ -134,9 +125,7 @@ struct UserInfoView: View {
             }
             .padding(.horizontal, 48)
             
-            
             Spacer()
-            
         }
         .frame(height: 400)
         //.background(Color.yellow)

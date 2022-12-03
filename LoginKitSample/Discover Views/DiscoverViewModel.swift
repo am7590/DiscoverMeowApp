@@ -18,10 +18,15 @@ class DiscoverViewModel: ObservableObject {
     @Published var loadingState: LoadingState = .loading
     @Published var displayName: String?
     @Published var bitmojiURL: URL?
+    @Published var swipeCount: Int = 0
     
     public init() {
         self.fetchCachedUserData()
         self.fetchUserData()
+    }
+    
+    public func triggerConfetti() {
+        self.swipeCount += 1
     }
     
     public func fetchUserData() {
