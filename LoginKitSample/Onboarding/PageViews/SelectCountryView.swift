@@ -35,7 +35,7 @@ struct CountryPicker: View {
             }
         }
         .onChange(of: $countryId.wrappedValue, perform: { value in
-            DatabaseManager.shared.updateCountry(country: value)
+            DatabaseManager.shared.updateField(dict: ["country": value])
         })
     }
 }

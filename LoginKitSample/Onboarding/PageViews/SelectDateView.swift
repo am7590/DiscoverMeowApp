@@ -21,7 +21,7 @@ struct SelectDateView: View {
                 .font(.title)
                 .onChange(of: birthDate, perform: { value in
                     age = Calendar.current.dateComponents([.year, .month, .day], from: birthDate, to: Date())
-                    DatabaseManager.shared.updateBirthdate(birthdate: birthDate)
+                    DatabaseManager.shared.updateField(dict: ["birthdate": birthDate])
                 })
             Text("Please confirm you are \(age.year ?? 0) years old")
                 .font(.title3)
