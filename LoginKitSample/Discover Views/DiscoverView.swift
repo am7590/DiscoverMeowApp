@@ -61,40 +61,15 @@ struct DiscoverView: View {
                     
                     
                     LazyVGrid(columns: bitmojiColumns, spacing: 8, content: {
-                    
-                        BitmojiDummyDetailView()
-                            .cornerRadius(30)
-                            .onTapGesture {
-                                viewModel.showSelectedBitmoji = true
-                            }
-                        
-                        BitmojiDummyDetailView()
-                            .cornerRadius(30)
-                        
-                        BitmojiDummyDetailView()
-                            .cornerRadius(30)
-                        
-                        BitmojiDummyDetailView()
-                            .cornerRadius(30)
-                        
-                        BitmojiDummyDetailView()
-                            .cornerRadius(30)
-                        
-                        BitmojiDummyDetailView()
-                            .cornerRadius(30)
-                        
-                        BitmojiDummyDetailView()
-                            .cornerRadius(30)
-                        
-                        BitmojiDummyDetailView()
-                            .cornerRadius(30)
-                        
-                        BitmojiDummyDetailView()
-                            .cornerRadius(30)
-                        
-                        BitmojiDummyDetailView()
-                            .cornerRadius(30)
-      
+                        ForEach(viewModel.users, id:\.token) { user in
+                            
+                            BitmojiDummyDetailView(bitmojiURL: user.bitmojiURL)
+                                .cornerRadius(30)
+                                .onTapGesture {
+                                    viewModel.showSelectedBitmoji = true
+                                }
+                        }
+                       
                     })
                     .padding()
                     
@@ -108,6 +83,9 @@ struct DiscoverView: View {
             NotificationView()
         }
         .confettiCannon(counter: $viewModel.swipeCount, num: 50, colors: [.yellow, .orange], openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 360), radius: 200)
+        .onAppear {
+            viewModel.loadUsers()
+        }
     }
 }
 
@@ -180,13 +158,24 @@ struct DiscoverView_Previews: PreviewProvider {
 
 
 struct BitmojiDummyDetailView: View {
+    let bitmojiURL: URL
+    
     var body: some View {
         ZStack {
             VStack {
-                Image("alek")
-                    .resizable()
-                    .scaledToFit()
-                //Text(user.name)
+                AsyncImage(
+                    url: bitmojiURL,
+                    content: { image in
+                        image.resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: 150, maxHeight: 150)
+                            .background(RoundedRectangle(cornerRadius: 8)
+                                .fill(Color("LightYellow"))
+                                .frame(width: 152, height: 152))
+                    },
+                    placeholder: {
+                        ProgressView()
+                    })
             }
         }
     }

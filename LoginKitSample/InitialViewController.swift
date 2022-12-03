@@ -28,10 +28,6 @@ class InitialViewController: UIViewController {
         
         messageLabel?.textColor = .black
         titleLabel?.textColor = .black
-        
-        DatabaseManager.shared.fetchAllUsers(completion: { users in
-            print(users)
-        }) 
     }
 }
 

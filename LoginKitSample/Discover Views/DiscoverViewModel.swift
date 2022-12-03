@@ -19,6 +19,7 @@ class DiscoverViewModel: ObservableObject {
     @Published var displayName: String?
     @Published var bitmojiURL: URL?
     @Published var swipeCount: Int = 0
+    @Published var users = [User]()
     
     public init() {
         self.fetchCachedUserData()
@@ -73,5 +74,11 @@ class DiscoverViewModel: ObservableObject {
             self.bitmojiURL = user.bitmojiURL
             print("fetched cached user")
         }
+    }
+    
+    public func loadUsers() {
+        DatabaseManager.shared.fetchAllUsers(completion: { users in
+            self.users = users
+        })
     }
 }
