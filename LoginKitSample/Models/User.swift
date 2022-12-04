@@ -16,7 +16,7 @@ struct User: Codable, Identifiable {
     let token: String
     let country: String?
     let birthdate: Date?
-    var swipeRightList: [User]?
+    var swipeRightList: [ListUser]?
     
     public init(data: [String: Any]) {
         self.displayName = data["displayName"] as? String ?? ""
@@ -25,7 +25,7 @@ struct User: Codable, Identifiable {
         self.token = data["token"] as? String ?? ""
         self.country = data["country"] as? String ?? "US"
         self.birthdate = data["birthdate"] as? Date ?? Date()
-        self.swipeRightList = data["swipeRightList"] as? [User] ?? []
+        self.swipeRightList = data["swipeRightList"] as? [ListUser] ?? []
     }
     
     // This is for dummy data only
@@ -35,7 +35,7 @@ struct User: Codable, Identifiable {
         self.token = token
         self.country = nil
         self.birthdate = nil
-        self.swipeRightList = nil
+        self.swipeRightList = []
     }
     
     init(from decoder: Decoder) throws {
@@ -45,7 +45,7 @@ struct User: Codable, Identifiable {
         self.token = try container.decode(String.self, forKey: .token)
         self.country = try container.decodeIfPresent(String.self, forKey: .country)
         self.birthdate = try container.decodeIfPresent(Date.self, forKey: .birthdate)
-        self.swipeRightList = try container.decodeIfPresent([User].self, forKey: .swipeRightList)
+        self.swipeRightList = try container.decodeIfPresent([ListUser].self, forKey: .swipeRightList) ?? []
     }
     
     func encode(to encoder: Encoder) throws {
@@ -61,17 +61,8 @@ struct User: Codable, Identifiable {
     private enum CodingKeys: String, CodingKey {
         case id, displayName, bitmojiURL, token, country, birthdate, swipeRightList
     }
+    
+    public func getListUser() -> ListUser {
+        return ListUser(displayName: self.displayName, bitmojiURL: self.bitmojiURL, country: self.country, swipeRightList: self.swipeRightList)
+    }
 }
-
-var dummyData = [
-    User(displayName: "Alek", bitmojiURL: URL(string: "https://sdk.bitmoji.com/render/panel/2e85858e-0458-4503-88d9-ce0fc1c72205-J8HAwwRJMzm411zWHUNU3V_68yXHukZVqxfbb_IwWGaE~YK_NKFXDg-v1.png?transparent=1&palette=1")!, token: ""),
-    User(displayName: "Alek", bitmojiURL: URL(string: "https://sdk.bitmoji.com/render/panel/2e85858e-0458-4503-88d9-ce0fc1c72205-J8HAwwRJMzm411zWHUNU3V_68yXHukZVqxfbb_IwWGaE~YK_NKFXDg-v1.png?transparent=1&palette=1")!, token: ""),
-    User(displayName: "Alek", bitmojiURL: URL(string: "https://sdk.bitmoji.com/render/panel/2e85858e-0458-4503-88d9-ce0fc1c72205-J8HAwwRJMzm411zWHUNU3V_68yXHukZVqxfbb_IwWGaE~YK_NKFXDg-v1.png?transparent=1&palette=1")!, token: ""),
-    User(displayName: "Alek", bitmojiURL: URL(string: "https://sdk.bitmoji.com/render/panel/2e85858e-0458-4503-88d9-ce0fc1c72205-J8HAwwRJMzm411zWHUNU3V_68yXHukZVqxfbb_IwWGaE~YK_NKFXDg-v1.png?transparent=1&palette=1")!, token: ""),
-    User(displayName: "Alek", bitmojiURL: URL(string: "https://sdk.bitmoji.com/render/panel/2e85858e-0458-4503-88d9-ce0fc1c72205-J8HAwwRJMzm411zWHUNU3V_68yXHukZVqxfbb_IwWGaE~YK_NKFXDg-v1.png?transparent=1&palette=1")!, token: ""),
-    User(displayName: "Alek", bitmojiURL: URL(string: "https://sdk.bitmoji.com/render/panel/2e85858e-0458-4503-88d9-ce0fc1c72205-J8HAwwRJMzm411zWHUNU3V_68yXHukZVqxfbb_IwWGaE~YK_NKFXDg-v1.png?transparent=1&palette=1")!, token: ""),
-    User(displayName: "Alek", bitmojiURL: URL(string: "https://sdk.bitmoji.com/render/panel/2e85858e-0458-4503-88d9-ce0fc1c72205-J8HAwwRJMzm411zWHUNU3V_68yXHukZVqxfbb_IwWGaE~YK_NKFXDg-v1.png?transparent=1&palette=1")!, token: ""),
-    User(displayName: "Alek", bitmojiURL: URL(string: "https://sdk.bitmoji.com/render/panel/2e85858e-0458-4503-88d9-ce0fc1c72205-J8HAwwRJMzm411zWHUNU3V_68yXHukZVqxfbb_IwWGaE~YK_NKFXDg-v1.png?transparent=1&palette=1")!, token: ""),
-    User(displayName: "Alek", bitmojiURL: URL(string: "https://sdk.bitmoji.com/render/panel/2e85858e-0458-4503-88d9-ce0fc1c72205-J8HAwwRJMzm411zWHUNU3V_68yXHukZVqxfbb_IwWGaE~YK_NKFXDg-v1.png?transparent=1&palette=1")!, token: ""),
-    User(displayName: "Alek", bitmojiURL: URL(string: "https://sdk.bitmoji.com/render/panel/2e85858e-0458-4503-88d9-ce0fc1c72205-J8HAwwRJMzm411zWHUNU3V_68yXHukZVqxfbb_IwWGaE~YK_NKFXDg-v1.png?transparent=1&palette=1")!, token: "")
-]
