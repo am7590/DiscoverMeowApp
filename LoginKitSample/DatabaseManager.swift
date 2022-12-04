@@ -17,7 +17,6 @@ final class DatabaseManager {
     var user: User?
     private var userReference: DocumentReference?
     
-
     public func addUserInfo(user: User) {
         do {
             let newUserReference = try db.collection("users").addDocument(from: user)
@@ -75,6 +74,8 @@ final class DatabaseManager {
                 
                 if users.count == snapshot?.documents.count {
                     completion(users)
+                } else {
+                    print("Error fetching users: \(error?.localizedDescription)")
                 }
             })
         }
@@ -84,12 +85,46 @@ final class DatabaseManager {
 // MARK: Update user's database fields
 extension DatabaseManager {
     
+    public func addUserToSwipedArray(user: ListUser) {
+        //setData(dict: ["swipeRightList": FieldValue.arrayUnion([user])])
+        
+        do {
+            db.collection("users").document(self.userReference!.documentID)
+                .updateData(
+                    ["swipeRightList": FieldValue.arrayUnion([try Firestore.Encoder().encode(user)])]
+                ) { error in
+                    guard let error = error else {
+                        // no error
+                        return
+                    }
+                    
+                    print("Could not update field: \(error)")
+                }
+        } catch {
+            // encoding error
+        }
+
+    }
+    
     public func updateField(dict: [String: Any]) {
         self.db.collection("users").document(self.userReference!.documentID).getDocument() { snapshot, error in
             if let error = error {
                 print("Error finding user: \(error)")
             } else {
                 snapshot?.reference.updateData(
+                    dict
+                )
+                print("Successfully updated field \(dict)")
+            }
+        }
+    }
+    
+    public func setData(dict: [String: Any], reference: String) {
+        self.db.collection("users").document(self.userReference!.documentID).getDocument() { snapshot, error in
+            if let error = error {
+                print("Error finding user: \(error)")
+            } else {
+                snapshot?.reference.setData(
                     dict
                 )
                 print("Successfully updated field \(dict)")
