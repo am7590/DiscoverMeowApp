@@ -7,18 +7,20 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 final class UserDefaultsStorageManager {
     
     struct Constants {
         static let hasLoggedInBefore = "hasLoggedInBefore"
         static let currentUser = "currentUser"
+        static let userReference = "userReference"
     }
-
+    
     static let shared = UserDefaultsStorageManager()
     
     let userDefaults = UserDefaults.standard
-        
+    
     init() {
         userDefaults.register(
             defaults: [
@@ -37,7 +39,7 @@ final class UserDefaultsStorageManager {
 }
 
 extension UserDefaultsStorageManager {
-   
+    
     private func getUser() -> User? {
         if let userData = userDefaults.data(forKey: Constants.currentUser) {
             do {
@@ -68,8 +70,18 @@ extension UserDefaultsStorageManager {
             print(error)
         }
     }
-        
+    
     public func setHasLoggedIn(with bool: Bool) {
         userDefaults.set(bool, forKey: Constants.hasLoggedInBefore)
+    }
+    
+    public func saveUserReferenceToUserDefaults(userReference: DocumentReference) {
+        UserDefaults.standard.set(userReference.documentID, forKey: Constants.userReference)
+        UserDefaults.standard.synchronize()
+    }
+    
+    public func getUserReferenceDocumentID() -> String? {
+        let userHasLoggedIn = userDefaults.string(forKey: Constants.userReference)
+        return userHasLoggedIn
     }
 }

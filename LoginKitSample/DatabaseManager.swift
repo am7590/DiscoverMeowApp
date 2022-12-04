@@ -21,6 +21,7 @@ final class DatabaseManager {
         do {
             let newUserReference = try db.collection("users").addDocument(from: user)
             self.userReference = newUserReference
+            UserDefaultsStorageManager.shared.saveUserReferenceToUserDefaults(userReference: newUserReference)
             print("Added \(user.displayName) to the database with reference \(newUserReference)")
         } catch {
             fatalError("Could not add user to database")
@@ -88,22 +89,23 @@ extension DatabaseManager {
     public func addUserToSwipedArray(user: ListUser) {
         //setData(dict: ["swipeRightList": FieldValue.arrayUnion([user])])
         
-        do {
-            db.collection("users").document(self.userReference!.documentID)
-                .updateData(
-                    ["swipeRightList": FieldValue.arrayUnion([try Firestore.Encoder().encode(user)])]
-                ) { error in
-                    guard let error = error else {
-                        // no error
-                        return
+        if let reference = UserDefaultsStorageManager.shared.getUserReferenceDocumentID() {
+            do {
+                db.collection("users").document(reference)
+                    .updateData(
+                        ["swipeRightList": FieldValue.arrayUnion([try Firestore.Encoder().encode(user)])]
+                    ) { error in
+                        guard let error = error else {
+                            // no error
+                            return
+                        }
+                        
+                        print("Could not update field: \(error)")
                     }
-                    
-                    print("Could not update field: \(error)")
-                }
-        } catch {
-            // encoding error
+            } catch {
+                // encoding error
+            }
         }
-
     }
     
     public func updateField(dict: [String: Any]) {
