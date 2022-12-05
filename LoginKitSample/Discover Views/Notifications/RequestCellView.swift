@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Request {
-    let user: User
+    let user: ListUser
     let message: String
 }
 

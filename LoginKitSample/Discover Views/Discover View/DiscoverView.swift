@@ -81,7 +81,7 @@ struct DiscoverView: View {
             ProfileView()
         }
         .sheet(isPresented: $showNotificationView) {
-            NotificationView()
+            NotificationView(viewModel: NotificationViewModel())
         }
         .confettiCannon(counter: $viewModel.swipeCount, num: 50, colors: [.yellow, .orange], openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 360), radius: 200)
         .onAppear {
