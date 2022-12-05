@@ -14,3 +14,14 @@ struct ListUser: Codable {
     let country: String?
     var swipeRightList: [ListUser]?
 }
+
+/// Preserves memberwise init
+extension ListUser {
+    public init(data: [String: Any]) {
+        self.displayName = data["displayName"] as? String ?? ""
+        let bitmojiURL = data["bitmojiURL"] as? String ?? ""
+        self.bitmojiURL = URL(string: bitmojiURL)!
+        self.country = data["country"] as? String ?? "US"
+        self.swipeRightList = data["swipeRightList"] as? [ListUser] ?? []
+    }
+}

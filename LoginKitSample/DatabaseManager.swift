@@ -81,6 +81,35 @@ final class DatabaseManager {
             })
         }
     }
+    
+    public func fetchSwipedUsers(completion: @escaping([ListUser]) -> Void) {
+        var listUsers = [ListUser]()
+
+        if let reference = UserDefaultsStorageManager.shared.getUserReferenceDocumentID() {
+            let collection = Firestore.firestore().collection("users").document(reference)
+           
+            collection.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    if let docData = document.data()!["swipeRightList"] as? NSArray {
+                        for item in docData {
+                            let item = item as! NSDictionary
+                            let displayName: String = item["displayName"] as! String
+                            let bitmojiURL: URL = URL(string: item["bitmojiURL"] as! String)!
+                            let country: String = item["country"] as! String
+                            
+                            let user = ListUser(displayName: displayName, bitmojiURL: bitmojiURL, country: country)
+                            
+                            listUsers.append(user)
+                        }
+                        
+                        completion(listUsers)
+                    }
+                } else {
+                    print("Document does not exist")
+                }
+            }
+        }
+    }
 }
 
 // MARK: Update user's database fields

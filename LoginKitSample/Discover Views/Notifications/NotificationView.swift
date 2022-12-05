@@ -10,6 +10,7 @@ import SwiftUI
 
 struct NotificationView: View {
     @Environment(\.dismiss) var dismiss
+    @StateObject var viewModel: NotificationViewModel
 
     var body: some View {
         ScrollView {
@@ -32,32 +33,24 @@ struct NotificationView: View {
                 }
                 .padding(.horizontal)
                 
-                let fakeUser = User(displayName: "Alek", bitmojiURL: DatabaseManager.shared.user!.bitmojiURL, token: "")
-                let fakeRequest = Request(user: fakeUser, message: "Lets be friends")
-                
                 ScrollView {
-                    RequestCellView(request: fakeRequest)
-                    
-                    RequestCellView(request: fakeRequest)
-                    
-                    RequestCellView(request: fakeRequest)
-                        .redacted(reason: .placeholder)
-                    
-                    RequestCellView(request: fakeRequest)
-                        .redacted(reason: .placeholder)
+                    ForEach(viewModel.users, id: \.bitmojiURL) { user in
+                        RequestCellView(request: Request(user: user, message: "Placeholder message"))
+                    }
                 }
-                
-       
                 
                 Spacer()
 
             }
+        }
+        .onAppear {
+            viewModel.fetchSwipeList()
         }
     }
 }
 
 struct NotificationView_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationView()
+        NotificationView(viewModel: NotificationViewModel())
     }
 }
