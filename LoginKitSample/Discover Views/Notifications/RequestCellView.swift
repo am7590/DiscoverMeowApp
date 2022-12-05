@@ -19,9 +19,17 @@ struct RequestCellView: View {
         VStack {
             
             HStack {
-                BitmojiDetailView(imageSize: .large)
-                    .frame(width: 80, height: 80)
-                
+                AsyncImage(
+                    url: request.user.bitmojiURL,
+                    content: { image in
+                        image.resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: 80, maxHeight: 80)
+                    },
+                    placeholder: {
+                        ProgressView()
+                    })
+               
                 VStack(alignment: .leading) {
                     Text(request.user.displayName)
                         .font(.system(size: 28, design: .rounded).bold())

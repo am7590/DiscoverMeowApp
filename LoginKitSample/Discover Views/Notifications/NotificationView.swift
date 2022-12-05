@@ -36,11 +36,10 @@ struct NotificationView: View {
                 ScrollView {
                     ForEach(viewModel.users, id: \.bitmojiURL) { user in
                         RequestCellView(request: Request(user: user, message: "Placeholder message"))
-                    }
+                    }.padding(.bottom)
                 }
                 
-                Spacer()
-
+                
             }
         }
         .onAppear {
