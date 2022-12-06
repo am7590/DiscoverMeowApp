@@ -101,7 +101,7 @@ final class DatabaseManager {
                             let item = item as! NSDictionary
                             let displayName: String = item["displayName"] as! String
                             let bitmojiURL: URL = URL(string: item["bitmojiURL"] as! String)!
-                            let country: String = item["country"] as! String
+                            let country: String = item["country"] as? String ?? ""
                             let otherUserSwipedList: [ListUser] = item["otherUserSwipedList"] as! [ListUser]
                             
                             let user = ListUser(displayName: displayName, bitmojiURL: bitmojiURL, country: country, otherUserSwipedList: otherUserSwipedList)

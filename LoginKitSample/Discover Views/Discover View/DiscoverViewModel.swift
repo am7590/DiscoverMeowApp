@@ -21,6 +21,7 @@ class DiscoverViewModel: ObservableObject {
     @Published var swipeCount: Int = 0
     @Published var users = [User]()
     @Published var selectedUser: User?
+    var otherUserSwipeList: [ListUser]?
     
     public init() {
         self.fetchCachedUserData()
@@ -30,9 +31,32 @@ class DiscoverViewModel: ObservableObject {
     public func triggerConfetti() {
         self.swipeCount += 1
         
-        if let currentUser = UserDefaultsStorageManager.shared.cachedUser, let userReference = self.selectedUser?.id {
-            DatabaseManager.shared.addUserToList(field: "otherUserSwipedList", user: currentUser.getListUser(), reference: userReference)
-        }
+        // if I am in selectedUser's swipe list, add me to their match list, and add them to my match list
+        // else, add me to their swipe list
+        
+        
+        DatabaseManager.shared.fetchListUsers(field: "otherUserSwipedList", completion: { users in
+            self.otherUserSwipeList = users
+            
+            if ((self.otherUserSwipeList?.contains(where: {$0.displayName == UserDefaultsStorageManager.shared.cachedUser?.displayName})) == nil) {
+                print("adding to otherUserSwipedList")
+                if let currentUser = UserDefaultsStorageManager.shared.cachedUser, let userReference = self.selectedUser?.id {
+                    DatabaseManager.shared.addUserToList(field: "otherUserSwipedList", user: currentUser.getListUser(), reference: userReference)
+                }
+            } else {
+                print("adding to matchList")
+                if let currentUser = UserDefaultsStorageManager.shared.cachedUser, let userReference = self.selectedUser?.id {
+                    DatabaseManager.shared.addUserToList(field: "matchList", user: currentUser.getListUser(), reference: userReference)
+                    DatabaseManager.shared.addUserToList(field: "matchList", user: (self.selectedUser?.getListUser())!, reference: UserDefaultsStorageManager.shared.getUserReferenceDocumentID()!)
+                }
+            }
+        })
+        
+        // TODO: Remove users from swipeRightList
+        // TODO: Request message
+        
+        
+       
         
         //DatabaseManager.shared.addUserToSwipedArray(user: self.selectedUser!.getListUser())
     }
