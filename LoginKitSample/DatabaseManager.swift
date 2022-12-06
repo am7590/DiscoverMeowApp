@@ -70,7 +70,12 @@ final class DatabaseManager {
         Firestore.firestore().collection("users").getDocuments { (snapshot, error) in
             snapshot?.documents.forEach({ (document) in
                 let dictionary = document.data()
-                let user = User(data: dictionary)
+                let reference = document.documentID
+                
+                print(dictionary)
+                
+                var user = User(data: dictionary)
+                user.id = reference
                 users.append(user)
                 
                 if users.count == snapshot?.documents.count {
@@ -82,7 +87,8 @@ final class DatabaseManager {
         }
     }
     
-    public func fetchSwipedUsers(completion: @escaping([ListUser]) -> Void) {
+    // otherUserSwipedList
+    public func fetchListUsers(field: String, completion: @escaping([ListUser]) -> Void) {
         var listUsers = [ListUser]()
 
         if let reference = UserDefaultsStorageManager.shared.getUserReferenceDocumentID() {
@@ -90,15 +96,15 @@ final class DatabaseManager {
            
             collection.getDocument { (document, error) in
                 if let document = document, document.exists {
-                    if let docData = document.data()!["swipeRightList"] as? NSArray {
+                    if let docData = document.data()![field] as? NSArray {
                         for item in docData {
                             let item = item as! NSDictionary
                             let displayName: String = item["displayName"] as! String
                             let bitmojiURL: URL = URL(string: item["bitmojiURL"] as! String)!
                             let country: String = item["country"] as! String
-                            let swipeRightList: [ListUser] = item["swipeRightList"] as! [ListUser]
+                            let otherUserSwipedList: [ListUser] = item["otherUserSwipedList"] as! [ListUser]
                             
-                            let user = ListUser(displayName: displayName, bitmojiURL: bitmojiURL, country: country, swipeRightList: swipeRightList)
+                            let user = ListUser(displayName: displayName, bitmojiURL: bitmojiURL, country: country, otherUserSwipedList: otherUserSwipedList)
                             
                             print(user)
                             
@@ -118,26 +124,27 @@ final class DatabaseManager {
 // MARK: Update user's database fields
 extension DatabaseManager {
     
-    public func addUserToSwipedArray(user: ListUser) {
+    public func addUserToList(field: String, user: ListUser, reference: String) {
         //setData(dict: ["swipeRightList": FieldValue.arrayUnion([user])])
         
-        if let reference = UserDefaultsStorageManager.shared.getUserReferenceDocumentID() {
+        //if let reference = UserDefaultsStorageManager.shared.getUserReferenceDocumentID() {
             do {
                 db.collection("users").document(reference)
                     .updateData(
-                        ["swipeRightList": FieldValue.arrayUnion([try Firestore.Encoder().encode(user)])]
+                        [field: FieldValue.arrayUnion([try Firestore.Encoder().encode(user)])]
                     ) { error in
                         guard let error = error else {
-                            // no error
+                            print("Added \(user.displayName) to \(field)")
                             return
                         }
                         
                         print("Could not update field: \(error)")
                     }
             } catch {
+                print("Did not add \(user) to \(field)")
                 // encoding error
             }
-        }
+        //}
     }
     
     public func updateField(dict: [String: Any]) {
@@ -153,18 +160,18 @@ extension DatabaseManager {
         }
     }
     
-    public func setData(dict: [String: Any], reference: String) {
-        self.db.collection("users").document(self.userReference!.documentID).getDocument() { snapshot, error in
-            if let error = error {
-                print("Error finding user: \(error)")
-            } else {
-                snapshot?.reference.setData(
-                    dict
-                )
-                print("Successfully updated field \(dict)")
-            }
-        }
-    }
+//    public func setData(dict: [String: Any], reference: String) {
+//        self.db.collection("users").document(self.userReference!.documentID).getDocument() { snapshot, error in
+//            if let error = error {
+//                print("Error finding user: \(error)")
+//            } else {
+//                snapshot?.reference.setData(
+//                    dict
+//                )
+//                print("Successfully updated field \(dict)")
+//            }
+//        }
+//    }
 }
 
 
@@ -179,6 +186,5 @@ extension DatabaseManager {
                 fatalError("Could not add user \(user.displayName) to database")
             }
         }
-        
     }
 }

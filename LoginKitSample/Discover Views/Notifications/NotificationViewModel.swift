@@ -9,15 +9,22 @@
 import Foundation
 
 class NotificationViewModel: ObservableObject {
-    @Published var users = [ListUser]()
+    @Published var matchedUsers = [ListUser]()
+    @Published var blurredUsers = [ListUser]()
     
 //    public init() {
 //        self.fetchSwipeList()
 //    }
     
-    public func fetchSwipeList() {
-        DatabaseManager.shared.fetchSwipedUsers(completion: { users in
-            self.users = users
+    public func fetchMatchList() {
+        DatabaseManager.shared.fetchListUsers(field: "matchList", completion: { users in
+            self.matchedUsers = users
+        })
+    }
+    
+    public func fetchNonMatchList() {
+        DatabaseManager.shared.fetchListUsers(field: "otherUserSwipedList", completion: { users in
+            self.blurredUsers = users
         })
     }
 }

@@ -34,26 +34,33 @@ struct NotificationView: View {
                 .padding(.horizontal)
                 
                 ScrollView {
-                    ForEach(viewModel.users, id: \.bitmojiURL) { user in
+                    ForEach(viewModel.matchedUsers, id: \.bitmojiURL) { user in
                         let userDisplayName = DatabaseManager.shared.user?.displayName
 
-                        if ((user.swipeRightList?.contains(where: {$0.displayName == userDisplayName})) != nil) {
-                            RequestCellView(request: Request(user: user, message: "Placeholder message"))
-                                .redacted(reason: .placeholder)
-                        } else {
-                            RequestCellView(request: Request(user: user, message: "Placeholder message"))
-                        }
+                        RequestCellView(request: Request(user: user, message: "Placeholder text"))
                         
-                        
-                        
+//                        if ((user.swipeRightList?.contains(where: {$0.displayName == userDisplayName})) != nil) {
+//                            RequestCellView(request: Request(user: user, message: "Placeholder message"))
+//                                .redacted(reason: .placeholder)
+//                        } else {
+//                            RequestCellView(request: Request(user: user, message: "Placeholder message"))
+//                        }
+ 
+                    }.padding(.bottom)
+                    
+                    ForEach(viewModel.blurredUsers, id: \.bitmojiURL) { user in
+                        let userDisplayName = DatabaseManager.shared.user?.displayName
+
+                        RequestCellView(request: Request(user: user, message: "Placeholder text"))
+                            .redacted(reason: .placeholder)
+
                     }.padding(.bottom)
                 }
-                
-                
             }
         }
         .onAppear {
-            viewModel.fetchSwipeList()
+            viewModel.fetchMatchList()
+            viewModel.fetchNonMatchList()
         }
     }
 }

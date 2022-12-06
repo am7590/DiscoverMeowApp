@@ -29,7 +29,12 @@ class DiscoverViewModel: ObservableObject {
     
     public func triggerConfetti() {
         self.swipeCount += 1
-        DatabaseManager.shared.addUserToSwipedArray(user: self.selectedUser!.getListUser())
+        
+        if let currentUser = UserDefaultsStorageManager.shared.cachedUser, let userReference = self.selectedUser?.id {
+            DatabaseManager.shared.addUserToList(field: "otherUserSwipedList", user: currentUser.getListUser(), reference: userReference)
+        }
+        
+        //DatabaseManager.shared.addUserToSwipedArray(user: self.selectedUser!.getListUser())
     }
     
     public func fetchUserData() {
