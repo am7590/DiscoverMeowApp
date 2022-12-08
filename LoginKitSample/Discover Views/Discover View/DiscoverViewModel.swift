@@ -21,6 +21,7 @@ class DiscoverViewModel: ObservableObject {
     @Published var swipeCount: Int = 0
     @Published var users = [User]()
     @Published var selectedUser: User?
+    @Published var showYouMatchedView: Bool = false
     var otherUserSwipeList: [ListUser]?
     
     public init() {
@@ -31,32 +32,35 @@ class DiscoverViewModel: ObservableObject {
     public func triggerConfetti() {
         self.swipeCount += 1
         
+        // TODO: Refactor fetchListUsers() so its not 💩
+        
         // if I am in selectedUser's swipe list, add me to their match list, and add them to my match list
         // else, add me to their swipe list
-        
         
         DatabaseManager.shared.fetchListUsers(field: "otherUserSwipedList", completion: { users in
             self.otherUserSwipeList = users
             
-            if ((self.otherUserSwipeList?.contains(where: {$0.displayName == UserDefaultsStorageManager.shared.cachedUser?.displayName})) == nil) {
-                print("adding to otherUserSwipedList")
-                if let currentUser = UserDefaultsStorageManager.shared.cachedUser, let userReference = self.selectedUser?.id {
-                    DatabaseManager.shared.addUserToList(field: "otherUserSwipedList", user: currentUser.getListUser(), reference: userReference)
-                }
-            } else {
-                print("adding to matchList")
-                if let currentUser = UserDefaultsStorageManager.shared.cachedUser, let userReference = self.selectedUser?.id {
-                    DatabaseManager.shared.addUserToList(field: "matchList", user: currentUser.getListUser(), reference: userReference)
-                    DatabaseManager.shared.addUserToList(field: "matchList", user: (self.selectedUser?.getListUser())!, reference: UserDefaultsStorageManager.shared.getUserReferenceDocumentID()!)
-                }
+            guard let swipeList = self.otherUserSwipeList, let currentUser = UserDefaultsStorageManager.shared.cachedUser, let selectedUser = self.selectedUser, let userReference = selectedUser.id else {
+                return
             }
+            
+            if swipeList.contains(where: { $0.displayName == selectedUser.displayName })  {
+                DatabaseManager.shared.addUserToList(field: "matchList", user: currentUser.getListUser(), reference: userReference)
+                DatabaseManager.shared.addUserToList(field: "matchList", user: (self.selectedUser?.getListUser())!, reference: UserDefaultsStorageManager.shared.getUserReferenceDocumentID()!)
+                DatabaseManager.shared.removeUserFromList(field: "otherUserSwipedList", user: (self.selectedUser?.getListUser())!, reference: UserDefaultsStorageManager.shared.getUserReferenceDocumentID()!)
+                self.showYouMatchedView = true
+                
+            } else {
+                DatabaseManager.shared.addUserToList(field: "otherUserSwipedList", user: currentUser.getListUser(), reference: userReference)
+            }
+            
         })
         
         // TODO: Remove users from swipeRightList
         // TODO: Request message
         
         
-       
+        
         
         //DatabaseManager.shared.addUserToSwipedArray(user: self.selectedUser!.getListUser())
     }
@@ -73,7 +77,7 @@ class DiscoverViewModel: ObservableObject {
                     self.displayName = userData.displayName ?? "No Name"
                     self.bitmojiURL = URL(string: userData.bitmojiTwoDAvatarUrl ?? "")!
                 }
-
+                
                 let currentUser = User(displayName: name, bitmojiURL: URL(string: url)!, token: token)
                 DatabaseManager.shared.doesUserExist(user: currentUser)
                 UserDefaultsStorageManager.shared.setUser(with: currentUser)  // Caches User struct in UserDefaults. It will still refresh upon each login to refresh bitmoji url.

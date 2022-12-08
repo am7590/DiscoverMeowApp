@@ -147,6 +147,29 @@ extension DatabaseManager {
         //}
     }
     
+    public func removeUserFromList(field: String, user: ListUser, reference: String) {
+        //setData(dict: ["swipeRightList": FieldValue.arrayUnion([user])])
+        
+        //if let reference = UserDefaultsStorageManager.shared.getUserReferenceDocumentID() {
+            do {
+                db.collection("users").document(reference)
+                    .updateData(
+                        [field: FieldValue.delete()]
+                    ) { error in
+                        guard let error = error else {
+                            print("Deleted \(user.displayName) from \(field)")
+                            return
+                        }
+                        
+                        print("Could not delete field: \(error)")
+                    }
+            } catch {
+                print("Did not delete \(user) from \(field)")
+                // encoding error
+            }
+        //}
+    }
+    
     public func updateField(dict: [String: Any]) {
         self.db.collection("users").document(self.userReference!.documentID).getDocument() { snapshot, error in
             if let error = error {
