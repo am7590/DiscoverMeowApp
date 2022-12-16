@@ -88,7 +88,7 @@ final class DatabaseManager {
     }
     
     // otherUserSwipedList
-    public func fetchListUsers(field: String, completion: @escaping([ListUser]) -> Void) {
+    public func fetchListUsers(field: String, completion: @escaping([ListUser]?) -> Void) {
         var listUsers = [ListUser]()
 
         if let reference = UserDefaultsStorageManager.shared.getUserReferenceDocumentID() {
@@ -117,6 +117,9 @@ final class DatabaseManager {
                     print("Document does not exist")
                 }
             }
+            
+            completion(nil)
+            
         }
     }
 }

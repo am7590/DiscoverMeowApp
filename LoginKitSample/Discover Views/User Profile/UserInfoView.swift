@@ -123,7 +123,7 @@ struct UserInfoView: View {
                     .padding(25)
                     .padding(.bottom, 10)
                     .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 2)
-                    .shadow(color: Color("LightGreen").opacity(0.4), radius: 10, x: 0, y: 2)
+//                    .shadow(color: Color("LightGreen").opacity(0.4), radius: 10, x: 0, y: 2)
                  
                     .onTapGesture {
                         print("swipe right")

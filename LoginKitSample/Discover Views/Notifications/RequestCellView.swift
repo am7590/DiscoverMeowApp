@@ -24,7 +24,7 @@ struct RequestCellView: View {
                     content: { image in
                         image.resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: 80, maxHeight: 80)
+                            .frame(maxWidth: 120, maxHeight: 120)
                     },
                     placeholder: {
                         ProgressView()

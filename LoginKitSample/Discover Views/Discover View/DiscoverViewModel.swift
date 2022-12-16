@@ -40,33 +40,20 @@ class DiscoverViewModel: ObservableObject {
         DatabaseManager.shared.fetchListUsers(field: "otherUserSwipedList", completion: { users in
             self.otherUserSwipeList = users
             
-            guard let swipeList = self.otherUserSwipeList, let currentUser = UserDefaultsStorageManager.shared.cachedUser, let selectedUser = self.selectedUser, let userReference = selectedUser.id else {
+            guard let currentUser = UserDefaultsStorageManager.shared.cachedUser, let selectedUser = self.selectedUser, let userReference = selectedUser.id else {
                 print("Could not unwrap")
                 return
             }
             
-            let match = swipeList.contains(where: { $0.displayName == selectedUser.displayName })
+            let match = self.otherUserSwipeList != nil ? self.otherUserSwipeList!.contains(where: { $0.displayName == selectedUser.displayName }) : false
             print("There is \(match ? "" : "not") a match")
             
             if match {
-                DatabaseManager.shared.addUserToList(field: "matchList", user: currentUser.getListUser(), reference: userReference)
-                DatabaseManager.shared.addUserToList(field: "matchList", user: (self.selectedUser?.getListUser())!, reference: UserDefaultsStorageManager.shared.getUserReferenceDocumentID()!)
-                DatabaseManager.shared.removeUserFromList(field: "otherUserSwipedList", user: (self.selectedUser?.getListUser())!, reference: UserDefaultsStorageManager.shared.getUserReferenceDocumentID()!)
                 self.showYouMatchedView = true
-                
             } else {
                 DatabaseManager.shared.addUserToList(field: "otherUserSwipedList", user: currentUser.getListUser(), reference: userReference)
             }
-            
         })
-        
-        // TODO: Remove users from swipeRightList
-        // TODO: Request message
-        
-        
-        
-        
-        //DatabaseManager.shared.addUserToSwipedArray(user: self.selectedUser!.getListUser())
     }
     
     public func fetchUserData() {

@@ -18,12 +18,22 @@ class NotificationViewModel: ObservableObject {
     
     public func fetchMatchList() {
         DatabaseManager.shared.fetchListUsers(field: "matchList", completion: { users in
+            guard let users = users else {
+                print("Could not find any matches")
+                return
+            }
+            
             self.matchedUsers = users
         })
     }
     
     public func fetchNonMatchList() {
         DatabaseManager.shared.fetchListUsers(field: "otherUserSwipedList", completion: { users in
+            guard let users = users else {
+                print("Could not find any non-matches")
+                return
+            }
+            
             self.blurredUsers = users
         })
     }

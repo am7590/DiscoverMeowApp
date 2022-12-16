@@ -11,9 +11,19 @@ import SwiftUI
 struct YouMatchedView: View {
     let selectedUser: User
     @State var message: String = ""
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack {
+            Button(action: {
+                dismiss()
+            }, label: {
+                Capsule()
+                    .fill(.yellow)
+                    .frame(width: 45, height: 6)
+                    .padding(10)
+            })
+            
             Text("You matched with")
                 .font(.title2)
                 .bold()
@@ -24,7 +34,7 @@ struct YouMatchedView: View {
                     content: { image in
                         image.resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: 80, maxHeight: 80)
+                            .frame(maxWidth: 160, maxHeight: 160)
                     },
                     placeholder: {
                         ProgressView()
@@ -38,7 +48,7 @@ struct YouMatchedView: View {
                     
                     // "🇺🇸 United States"
                     Group {
-                        Text(" \((selectedUser.country ?? "US").flag())")
+                        Text("\((selectedUser.country ?? "US").flag())")
                         + Text(" \((selectedUser.country ?? "US").countryName())")
                     }
                         .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
@@ -74,6 +84,9 @@ struct YouMatchedView: View {
                 .frame(width: 150, height: 35)
                 .background(.red)
                 .clipShape(Capsule())
+                .onTapGesture {
+                    dismiss()
+                }
                 
                 
                 
@@ -92,6 +105,9 @@ struct YouMatchedView: View {
                 .clipShape(Capsule())
                 .onTapGesture {
                     DatabaseManager.shared.removeUserFromList(field: "otherUserSwipedList", user: selectedUser.getListUser(message), reference: UserDefaultsStorageManager.shared.getUserReferenceDocumentID()!)
+                    DatabaseManager.shared.addUserToList(field: "matchList", user: UserDefaultsStorageManager.shared.cachedUser!.getListUser(), reference: selectedUser.id!)
+                    DatabaseManager.shared.addUserToList(field: "matchList", user: (self.selectedUser.getListUser(message)), reference: UserDefaultsStorageManager.shared.getUserReferenceDocumentID()!)
+                    DatabaseManager.shared.removeUserFromList(field: "otherUserSwipedList", user: (self.selectedUser.getListUser()), reference: UserDefaultsStorageManager.shared.getUserReferenceDocumentID()!)
                 }
                 
                 Spacer()
@@ -100,17 +116,17 @@ struct YouMatchedView: View {
         }
         .padding(.vertical, 16)
         
-        .background(
-            Rectangle()
-                .fill(Color.white)
-                .cornerRadius(12)
-                .shadow(
-                    color: Color.gray.opacity(0.8),
-                    radius: 8,
-                    x: 0,
-                    y: 0
-                )
-        )
+//        .background(
+//            Rectangle()
+//                .fill(Color.white)
+//                .cornerRadius(12)
+//                .shadow(
+//                    color: Color.gray.opacity(0.8),
+//                    radius: 8,
+//                    x: 0,
+//                    y: 0
+//                )
+//        )
     }
 }
 
