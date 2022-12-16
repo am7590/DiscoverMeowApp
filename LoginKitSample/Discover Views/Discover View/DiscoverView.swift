@@ -83,6 +83,10 @@ struct DiscoverView: View {
         .sheet(isPresented: $showNotificationView) {
             NotificationView(viewModel: NotificationViewModel())
         }
+        .sheet(isPresented: $viewModel.showYouMatchedView) {
+            YouMatchedView(selectedUser: viewModel.selectedUser!)
+                .presentationDetents([.medium])
+        }
         .confettiCannon(counter: $viewModel.swipeCount, num: 50, colors: [.yellow, .orange], openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 360), radius: 200)
         .onAppear {
             viewModel.loadUsers()

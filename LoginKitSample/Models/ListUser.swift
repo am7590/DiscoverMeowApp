@@ -13,6 +13,7 @@ struct ListUser: Codable {
     let bitmojiURL: URL
     let country: String?
     var otherUserSwipedList: [ListUser]?
+    let requestMessage: String?
 }
 
 /// Preserves memberwise init
@@ -23,5 +24,6 @@ extension ListUser {
         self.bitmojiURL = URL(string: bitmojiURL)!
         self.country = data["country"] as? String ?? "US"
         self.otherUserSwipedList = data["otherUserSwipedList"] as? [ListUser] ?? []
+        self.requestMessage = data["requestMessage"] as? String ?? nil
     }
 }

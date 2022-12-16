@@ -51,7 +51,7 @@ struct NotificationView: View {
                     ForEach(viewModel.blurredUsers, id: \.bitmojiURL) { user in
                         let userDisplayName = DatabaseManager.shared.user?.displayName
 
-                        RequestCellView(request: Request(user: user, message: "Placeholder text"))
+                        RequestCellView(request: Request(user: user, message: user.requestMessage ?? "Add me on Snap"))
                             .redacted(reason: .placeholder)
 
                     }.padding(.bottom)

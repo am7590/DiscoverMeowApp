@@ -71,7 +71,7 @@ struct User: Codable, Identifiable {
         case id, displayName, bitmojiURL, token, country, birthdate, matchList, otherUserSwipedList
     }
     
-    public func getListUser() -> ListUser {
-        return ListUser(displayName: self.displayName, bitmojiURL: self.bitmojiURL, country: self.country, otherUserSwipedList: otherUserSwipedList)
+    public func getListUser(_ message: String? = nil) -> ListUser {
+        return ListUser(displayName: self.displayName, bitmojiURL: self.bitmojiURL, country: self.country, otherUserSwipedList: otherUserSwipedList, requestMessage: message)
     }
 }

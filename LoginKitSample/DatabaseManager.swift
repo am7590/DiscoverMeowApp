@@ -104,7 +104,7 @@ final class DatabaseManager {
                             let country: String = item["country"] as? String ?? ""
                             let otherUserSwipedList: [ListUser] = item["otherUserSwipedList"] as! [ListUser]
                             
-                            let user = ListUser(displayName: displayName, bitmojiURL: bitmojiURL, country: country, otherUserSwipedList: otherUserSwipedList)
+                            let user = ListUser(displayName: displayName, bitmojiURL: bitmojiURL, country: country, otherUserSwipedList: otherUserSwipedList, requestMessage: nil)
                             
                             print(user)
                             

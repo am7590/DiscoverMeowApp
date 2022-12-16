@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Request {
+struct Request: Codable {
     let user: ListUser
     let message: String
 }

@@ -41,10 +41,14 @@ class DiscoverViewModel: ObservableObject {
             self.otherUserSwipeList = users
             
             guard let swipeList = self.otherUserSwipeList, let currentUser = UserDefaultsStorageManager.shared.cachedUser, let selectedUser = self.selectedUser, let userReference = selectedUser.id else {
+                print("Could not unwrap")
                 return
             }
             
-            if swipeList.contains(where: { $0.displayName == selectedUser.displayName })  {
+            let match = swipeList.contains(where: { $0.displayName == selectedUser.displayName })
+            print("There is \(match ? "" : "not") a match")
+            
+            if match {
                 DatabaseManager.shared.addUserToList(field: "matchList", user: currentUser.getListUser(), reference: userReference)
                 DatabaseManager.shared.addUserToList(field: "matchList", user: (self.selectedUser?.getListUser())!, reference: UserDefaultsStorageManager.shared.getUserReferenceDocumentID()!)
                 DatabaseManager.shared.removeUserFromList(field: "otherUserSwipedList", user: (self.selectedUser?.getListUser())!, reference: UserDefaultsStorageManager.shared.getUserReferenceDocumentID()!)
