@@ -15,16 +15,9 @@ struct NotificationView: View {
     var body: some View {
         ScrollView {
             VStack {
-                HStack {
-                    Button(action: {
-                        dismiss()
-                    }, label: {
-                        Capsule()
-                            .fill(.yellow)
-                            .frame(width: 45, height: 6)
-                            .padding(10)
-                    })
-                }
+                ExitButtonView(dismissAction: {
+                    dismiss()
+                })
                 
                 HStack {
                     Text("Requests")

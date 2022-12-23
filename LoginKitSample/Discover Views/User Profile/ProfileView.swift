@@ -21,16 +21,9 @@ struct ProfileView: View {
             
             ScrollView {
                 VStack {
-                    HStack {
-                        Button(action: {
-                            dismiss()
-                        }, label: {
-                            Capsule()
-                                .fill(.yellow)
-                                .frame(width: 45, height: 6)
-                                .padding(10)
-                        })
-                    }
+                    ExitButtonView(dismissAction: {
+                        dismiss()
+                    })
                     
                     BitmojiDetailView(imageSize: .large)
                         .frame(width: width/1.25)
