@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct ExitButtonView: View {
+    var title: String?
     var dismissAction: () -> Void
     
     var body: some View {
@@ -23,7 +24,25 @@ struct ExitButtonView: View {
                     .padding([.leading, .trailing, .top])
             })
             
+            if let title = title {
+                Spacer()
+                
+                Text(title)
+                    .font(.largeTitle.bold())
+                    .padding(.top)
+                
+                Spacer()
+            }
+            
             Spacer()
         }
+    }
+}
+
+struct ExitButtonView_Previews: PreviewProvider {
+    static var previews: some View {
+        ExitButtonView(title: "Requests", dismissAction: {
+            print("dismiss")
+        })
     }
 }

@@ -75,6 +75,9 @@ struct DiscoverView: View {
                     .padding()
                     
                 }
+                .refreshable {
+                    print("refresh!!!")
+                }
             }
         }
         .sheet(isPresented: $showProfileView) {

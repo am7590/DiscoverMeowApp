@@ -34,6 +34,7 @@
 		2984B81D2929BC0E00DFC042 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2984B81C2929BC0E00DFC042 /* ProfileView.swift */; };
 		2984B81F2929BC2400DFC042 /* BitmojiDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2984B81E2929BC2400DFC042 /* BitmojiDetailView.swift */; };
 		2984B8212929BC3900DFC042 /* FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2984B8202929BC3900DFC042 /* FlexibleView.swift */; };
+		29925AA129553EAA00F88EF1 /* ExitButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29925AA029553EAA00F88EF1 /* ExitButtonView.swift */; };
 		29A445B92936F84B00653106 /* String+Country&Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A445B82936F84B00653106 /* String+Country&Flag.swift */; };
 		29A445D529396FE700653106 /* SwipeToDismissModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A445D429396FE700653106 /* SwipeToDismissModifier.swift */; };
 		29A445DB29397C1A00653106 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 29A445DA29397C1A00653106 /* ConfettiSwiftUI */; };
@@ -71,6 +72,7 @@
 		2984B81C2929BC0E00DFC042 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		2984B81E2929BC2400DFC042 /* BitmojiDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitmojiDetailView.swift; sourceTree = "<group>"; };
 		2984B8202929BC3900DFC042 /* FlexibleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleView.swift; sourceTree = "<group>"; };
+		29925AA029553EAA00F88EF1 /* ExitButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitButtonView.swift; sourceTree = "<group>"; };
 		29A445B82936F84B00653106 /* String+Country&Flag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Country&Flag.swift"; sourceTree = "<group>"; };
 		29A445D429396FE700653106 /* SwipeToDismissModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeToDismissModifier.swift; sourceTree = "<group>"; };
 		29F62385293D507A00633DCE /* ListUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUser.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				29A445D429396FE700653106 /* SwipeToDismissModifier.swift */,
 				2984B8202929BC3900DFC042 /* FlexibleView.swift */,
 				2984B81E2929BC2400DFC042 /* BitmojiDetailView.swift */,
+				29925AA029553EAA00F88EF1 /* ExitButtonView.swift */,
 			);
 			path = "Discover View";
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				295D53232935958B00CAE386 /* SelectCountryView.swift in Sources */,
 				295D53212935957D00CAE386 /* PreferencesView.swift in Sources */,
 				291A53C629271B69009FFD7D /* MainOnboardingView.swift in Sources */,
+				29925AA129553EAA00F88EF1 /* ExitButtonView.swift in Sources */,
 				29F6238D29417C4F00633DCE /* YouMatchedView.swift in Sources */,
 				291A53C529271B69009FFD7D /* OnboardingArrowView.swift in Sources */,
 				2984B8212929BC3900DFC042 /* FlexibleView.swift in Sources */,

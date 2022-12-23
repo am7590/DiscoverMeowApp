@@ -27,8 +27,7 @@ struct ProfileView: View {
                     
                     BitmojiDetailView(imageSize: .large)
                         .frame(width: width/1.25)
-                    
-                    
+                     
                     Spacer()
                 }
                 .frame(width: width)

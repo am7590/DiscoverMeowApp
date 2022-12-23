@@ -15,13 +15,11 @@ struct NotificationView: View {
     var body: some View {
         ScrollView {
             VStack {
-                ExitButtonView(dismissAction: {
-                    dismiss()
-                })
-                
                 HStack {
-                    Text("Requests")
-                        .font(.largeTitle.bold())
+                    ExitButtonView(title: "Requests", dismissAction: {
+                        dismiss()
+                    })
+                    
                     Spacer()
                 }
                 .padding(.horizontal)
